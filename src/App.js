@@ -1,10 +1,15 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import SignUp from "./Components/signIn";
+import Route from "./Routes/Router";
+import {BrowserRouter} from "react-router-dom";
+
 function App() {
   return (
-   <SignUp/>
+      <BrowserRouter>
+        <Route />
+      </BrowserRouter>
+
   );
 }
 

@@ -6,40 +6,35 @@ import DashBoard from '../Components/Dashboard';
 import {BASE_URL} from '../Constant';
 
 class Router extends Component {
+
+
     render() {
+        const item= localStorage.getItem('user')
+        console.log(item+"item")
         const Private = ({component: Component, permission, ...rest}) => (
             <Route {...rest} render={(routeProps) => {
                 return (
-                    true
+                    item!=null && item
                         ? <Component {...routeProps} />
-                        : <Redirect to='/'/>
+                        : <Redirect to={`${BASE_URL}`}/>
                 )
             }}/>
         );
         const Public = ({component: Component, permission, ...rest}) => (
             <Route {...rest} render={(routeProps) => {
                 return (
-                    true
+                    item==null
                         ? <Component {...routeProps} />
-                        : <Redirect to={`${BASE_URL}Signup`}/>
+                        : <Redirect to={`${BASE_URL}Dashboard`}/>
                 )
             }}/>
         );
         return (
             <Switch>
-                <Private exact path={`${BASE_URL}smartTipWidget`}
+                <Private exact path={`${BASE_URL}Dashboard`}
                          component={() => <DashBoard value={this.props.value}/>}/>
-                {/*<Private exact path={`${BASE_URL}viewSmartTip/`}*/}
-                {/*         component={(props) => <ViewSmartTip {...props}/>}/>*/}
-                {/*<Private exact path={`${BASE_URL}smartTipList/`}*/}
-                {/*         component={() => (<SmartTipList value={this.props.value}/>)}/>*/}
-                {/*<Private exact path='/logout' component={Login}/>*/}
                 <Public exact path={`${BASE_URL}`} component={() => <SignIn {...this.props}/>}/>
                 <Public exact path={`${BASE_URL}Signup`} component={() => <SignUp {...this.props}/>}/>
-                {/*<Route exact path={`${BASE_URL}callback`} render={(props) => {*/}
-                {/*    handleAuthentication(props);*/}
-                {/*    return <Loader {...props} />*/}
-                {/*}}/>*/}
             </Switch>
         )
     }

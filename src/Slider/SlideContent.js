@@ -1,16 +1,5 @@
 import React from 'react'
-import { withStyles } from '@material-ui/core/styles';
 import {createUseStyles} from 'react-jss'
-
-const useStyles = createUseStyles({
-  SliderContent :{
-    transform: props => `translateX(-${props.translate}px)`,
-    transition: props =>`transform ease-out ${props.transition}s`,
-    height: '100%',
-    width: props => props.width,
-    display: 'flex',
-  }
-})
 
 function SliderContent(props) {
   const classes = useStyles(props)
@@ -35,5 +24,15 @@ function SliderContent(props) {
        </div>
   )
 }
+
+const useStyles = createUseStyles({
+  SliderContent :{
+    transform: props => `translateX(-${props.translate}px)`,
+    transition: props =>`transform ease-out ${props.transition}s`,
+    height: '100%',
+    width: props => props.width,
+    display: 'flex',
+  }
+})
 
 export default SliderContent

@@ -21,5 +21,5 @@ let firebaseConfig = {
     measurementId: MEASUREMENTID
 };
 firebase.initializeApp(firebaseConfig);
-firebase.analytics();
+// firebase.analytics();
 export default firebase;

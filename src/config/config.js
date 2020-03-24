@@ -21,7 +21,7 @@ let firebaseConfig = {
     measurementId: MEASUREMENTID
 };
 firebase.initializeApp(firebaseConfig);
-firebase.analytics();
+// firebase.analytics();
 const db = firebase.firestore();
 db.settings({
     timestampsInSnapshots: true

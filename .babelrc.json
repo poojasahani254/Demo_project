@@ -1,0 +1,10 @@
+{
+    "presets": ["react-app"],
+    "plugins": ["@babel/plugin-proposal-optional-chaining"],
+     "ignore": ["node_modules","bulid"],
+     "env": {
+         "test": {
+             "plugins": ["require-context-hook"]
+         }
+     }
+}

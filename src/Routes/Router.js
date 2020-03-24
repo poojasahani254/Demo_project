@@ -1,16 +1,14 @@
 import {Redirect, Route, Switch, withRouter} from "react-router-dom";
 import React, {Component} from 'react';
-import SignUp from '../Components/Signup'
-import SignIn from '../Components/signIn';
-import DashBoard from '../Components/Dashboard';
+import SignUp from '../Components/RegisterUser/Signup'
+import SignIn from '../Components/Login/signIn';
+import DashBoard from '../Components/Dashboard/Dashboard';
 import {BASE_URL} from '../Constant';
 
 class Router extends Component {
-
-
     render() {
         const item= localStorage.getItem('user')
-        console.log(item+"item")
+        // console.log(item+"item")
         const Private = ({component: Component, permission, ...rest}) => (
             <Route {...rest} render={(routeProps) => {
                 return (

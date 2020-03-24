@@ -1,8 +1,7 @@
 import React from 'react';
-import Header from '../Components/CommonComponent/Header';
-import Tabs from '../Components/CommonComponent/Tabs'
-import Slider from '../Components/CommonComponent/ImageSlider';
-import Slide from '../Slider/slider';
+import Header from '../CommonComponent/Header';
+import Tabs from '../CommonComponent/Tabs'
+import Slide from '../../Slider/slider';
 class App extends React.Component{
 
     render(){
@@ -13,7 +12,6 @@ class App extends React.Component{
                     <Tabs/>
                 </div>
                 <Slide/>
-                {/*<Slider/>*/}
             </div>
         );
     }

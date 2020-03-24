@@ -11,7 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
-import Api from '../config/config';
+import Api from '../../config/config';
 
 function Copyright() {
     return (

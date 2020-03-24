@@ -3,15 +3,35 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/polyfill": "^7.4.3",
     "@material-ui/core": "^4.9.5",
     "@material-ui/icons": "^4.9.1",
+    "@storybook/addon-actions": "^5.2.8",
+    "@storybook/addon-storyshots": "^5.2.8",
+    "@storybook/addon-viewport": "^5.2.8",
+    "@storybook/react": "^5.2.8",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "antd": "^3.23.6",
+    "babel-jest": "^24.9.0",
+    "babel-plugin-require-context-hook": "^1.0.0",
+    "babel-preset-react-app": "^9.0.2",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.15.1",
+    "enzyme-to-json": "^3.4.3",
+    "eslint-plugin-jest": "^23.1.1",
     "firebase": "^7.10.0",
+    "jest": "^24.9.0",
+    "jest-prop-type-error": "^1.0.0",
     "jwt-decode": "^2.2.0",
-    "react": "^16.13.0",
-    "react-dom": "^16.13.0",
+    "mockdate": "^2.0.5",
+    "moment": "^2.24.0",
+    "moment-timezone": "^0.5.27",
+    "react": "^16.13.1",
+    "react-awesome-slider": "^4.1.0",
+    "react-dom": "^16.13.1",
     "react-jss": "^10.1.1",
     "react-notifications-component": "^2.3.0",
     "react-router": "^5.1.2",
@@ -24,11 +44,60 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test": "jest",
+    "eject": "react-scripts eject",
+    "storybook": "start-storybook -p 9009 -s public",
+    "build-storybook": "build-storybook -s public",
+    "test:unit": "node scripts/test.js --env=jsdom --testPathPattern=test\\.js$ --watch",
+    "test:spec": "node scripts/test.js --env=jsdom --testPathPattern=spec\\.js$",
+    "test:all": "node scripts/test.js --env=jsdom --coverage"
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "jest": {
+    "modulePaths": [
+      "<rootDir>/src",
+      "<rootDir>/node_modules"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,mjs}"
+    ],
+    "setupFiles": [
+      "<rootDir>/config/polyfills.js",
+      "<rootDir>/config/setuptest.js",
+      "<rootDir>/config/jest/register-context.js",
+      "jest-prop-type-error"
+    ],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "testMatch": [
+      "<rootDir>/src/**/__tests__/**/*.{js,jsx,mjs}",
+      "<rootDir>/src/**/?(*.)(spec|test).{js,jsx,mjs}",
+      "<rootDir>/src/**/[^]*test.js"
+    ],
+    "testEnvironment": "jsdom",
+    "testURL": "http://localhost",
+    "moduleNameMapper": {
+      "\\.(css)$": "identity-obj-proxy"
+    },
+    "transform": {
+      "^.+\\.(js|jsx|mjs)$": "<rootDir>/node_modules/babel-jest",
+      "^(?!.*\\.(js|jsx|mjs|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
+    },
+    "transformIgnorePatterns": [
+      "node_modules/(?!(antd|css-animation|rc-*))"
+    ],
+    "moduleFileExtensions": [
+      "web.js",
+      "js",
+      "json",
+      "web.jsx",
+      "jsx",
+      "node",
+      "mjs"
+    ]
   },
   "browserslist": {
     "production": [
@@ -41,5 +110,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-optional-chaining": "^7.2.0",
+    "jsdom": "^13.1.0"
   }
 }

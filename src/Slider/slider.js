@@ -1,21 +1,17 @@
 import React, { useState,useEffect,useRef } from 'react'
 import { withStyles } from '@material-ui/core/styles';
 import SliderContent from "./SlideContent";
-import Arrow from "../Slider/Arrow";
 function Slider(props) {
 
     const {classes}=props
     const getWidth = () => window.innerWidth
-
-
-
     const [state, setState] = useState({
         activeIndex: 0,
         translate: 0,
-        transition: 0.45
+        transition: 0.45,
+        flag:false
     })
-    const { translate, transition ,activeIndex} = state
-
+    const { translate, transition ,activeIndex,flag} = state
     const images = [
         'https://images.unsplash.com/photo-1449034446853-66c86144b0ad?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80',
         'https://images.unsplash.com/photo-1470341223622-1019832be824?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2288&q=80',
@@ -32,45 +28,36 @@ function Slider(props) {
         const play = () => {
             autoPlayRef.current()
         }
-
-        const interval = setInterval(play,  2000)
+        const interval = setInterval(play,  3000)
         return () => clearInterval(interval)
     }, [])
 
     const nextSlide = () => {
-
         if (activeIndex === images.length - 1) {
             return setState({
                 ...state,
                 translate: 0,
                 activeIndex: 0
             })
+           
         }
-        // alert('hello'+(activeIndex + 1) * getWidth())
-        setState({
-            ...state,
-            activeIndex: activeIndex + 1,
-            translate: (activeIndex + 1) * getWidth()
-        })
-    }
-    const prevSlide = () => {
-
-        if (activeIndex === 0) {
-            // alert((images.length - 1) * getWidth())
-            return setState({
+            setState({
                 ...state,
-                translate: (images.length - 1) * getWidth(),
-                activeIndex: images.length - 1
+                activeIndex: activeIndex + 1,
+                translate: (activeIndex + 1) * getWidth()
             })
-        }
+        
+        
+    }
+    const DotClick = (activeIndex) => {
 
         setState({
             ...state,
-            activeIndex: activeIndex - 1,
-            translate: (activeIndex - 1) * getWidth()
+            activeIndex: activeIndex,
+            translate: activeIndex * getWidth()
         })
     }
-    const Dot = ({ active }) => (
+    const Dot = ({ active ,index}) => (
         <span
             style={{
                 padding: '5px',
@@ -79,6 +66,7 @@ function Slider(props) {
                 borderRadius: '50%',
                 backgroundColor: `${active ? 'black' : 'white'}`
             }}
+            onClick={()=>{DotClick(index) }}
         />
     )
     return (
@@ -92,13 +80,13 @@ function Slider(props) {
             />
             <div className={classes.dot}>
                 {images.map((slide, i) => (
-                    <Dot key={slide} active={activeIndex === i} />
+                    <Dot key={slide} active={activeIndex === i} index={i} />
                 ))}
             </div>
         </div>
     )
 }
-const style=theme => ({
+const style={
     css: {
         position: 'relative',
         height: '70vh',
@@ -107,11 +95,11 @@ const style=theme => ({
         overflow: 'hidden',
     },dot:{
         position: 'absolute',
-        bottom: '130px',
+        bottom: '150px',
         width: '100%',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
     }
-})
+}
 export default withStyles(style)(Slider)

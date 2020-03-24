@@ -1,0 +1,10 @@
+.wrap {
+  background-color: var(--brand-base);
+  display: flex;
+  flex-direction: column;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  position: absolute;
+}

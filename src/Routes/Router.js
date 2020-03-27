@@ -1,7 +1,7 @@
 import {Redirect, Route, Switch, withRouter} from "react-router-dom";
 import React, {Component} from 'react';
 import SignUp from '../Components/RegisterUser/Signup'
-import SignIn from '../Components/Login/signIn';
+import SignIn from '../Container/Login/signin';
 import DashBoard from '../Components/Dashboard/Dashboard';
 import {BASE_URL} from '../Constant';
 

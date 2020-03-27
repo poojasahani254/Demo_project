@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../CommonComponent/Header';
-import Tabs from '../CommonComponent/Tabs'
+import Tabs from '../../Container/Tab/Tabs'
 import Slide from '../../Slider/slider';
 class App extends React.Component{
 

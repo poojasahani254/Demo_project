@@ -25,7 +25,7 @@ const names = [{
 function App(props) {
     const classes = useStyles();
     const theme = useTheme();
-    const [personName, setPersonName] = React.useState(['English']);
+    const [Lang, setLang] = React.useState(['English']);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
     const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -36,13 +36,13 @@ function App(props) {
     const ITEM_PADDING_TOP = 2;
 
     const handleChange = (event) => {
-        setPersonName(event.target.value);
+        setLang(event.target.value);
     };
 
-    const getStyles=(name ,personName,theme) =>{
+    const getStyles=(name ,Lang,theme) =>{
         return {
             fontWeight:
-                personName.indexOf(name) === -1
+                Lang.indexOf(name) === -1
                     ? theme.typography.fontWeightRegular
                     : theme.typography.fontWeightMedium,
         };
@@ -183,13 +183,13 @@ function App(props) {
                         <Select
                             labelId="demo-mutiple-name-label"
                             id="demo-mutiple-name"
-                            value={personName}
+                            value={Lang}
                             onChange={handleChange}
                             input={<Input />}
                             MenuProps={MenuProps}
                         >
                             {names.map(item => (
-                                <MenuItem key={item.name} value={item.name} style={getStyles(item.name, personName, theme)}>
+                                <MenuItem key={item.name} value={item.name} style={getStyles(item.name, Lang, theme)}>
                                     {item.name}
                                     {/*<img src={item.country} style={{height:'5vh'}}/>*/}
                                 </MenuItem>

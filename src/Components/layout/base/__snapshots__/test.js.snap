@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Base Layout Component  Snapshot 1`] = `
-<section
-  className="wrap ant-layout"
->
-  this is Layout component
-</section>
-`;

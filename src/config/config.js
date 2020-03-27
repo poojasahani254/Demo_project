@@ -20,9 +20,10 @@ let firebaseConfig = {
     appId: APPID,
     measurementId: MEASUREMENTID
 };
+
 firebase.initializeApp(firebaseConfig);
-// firebase.analytics();
 const db = firebase.firestore();
+
 db.settings({
     timestampsInSnapshots: true
 });
@@ -44,25 +45,15 @@ const Api = (route,data, method) => {
             });
             break;
         case 'get':
-            return db.collection(route).add(data).then((res)=>{
+            return db.collection(route).get().then((res)=>{
                 return Promise.resolve(res);
             }).catch((err)=>{
                 return Promise.reject(err);
             });
             break;
         case 'delete':
-            return db.collection(route).add(data).then((res)=>{
-                return Promise.resolve(res);
-            }).catch((err)=>{
-                return Promise.reject(err);
-            });
             break;
         case 'patch':
-            return db.collection(route).add(data).then((res)=>{
-                return Promise.resolve(res);
-            }).catch((err)=>{
-                return Promise.reject(err);
-            });
             break;
         case 'CreatAuth':
             return firebase.auth().createUserWithEmailAndPassword(data.email,data.password)
@@ -98,17 +89,18 @@ const Api = (route,data, method) => {
             }).catch(function(error) {
                 return Promise.reject(error);
             });
-        case 'TwitteAuth':
-            let Tprovider = new firebase.auth.TwitterAuthProvider();
-            return firebase.auth().signInWithRedirect(Tprovider).then((result)=> {
-                return  firebase.auth().getRedirectResult().then((result) =>{
-                    return Promise.resolve(result);
-                }).catch(function(error) {
-                });
-            }).catch(function(error) {
-                return Promise.reject(error);
-            });
+        // case 'TwitteAuth':
+        //     let Tprovider = new firebase.auth.TwitterAuthProvider();
+        //     return firebase.auth().signInWithRedirect(Tprovider).then((result)=> {
+        //         return  firebase.auth().getRedirectResult().then((result) =>{
+        //             return Promise.resolve(result);
+        //         }).catch(function(error) {
+        //         });
+        //     }).catch(function(error) {
+        //         return Promise.reject(error);
+        //     });
 
     }
 };
+
 export default Api;

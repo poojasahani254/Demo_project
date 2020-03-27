@@ -1,0 +1,220 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Sign In Component Snapshot 1`] = `
+<main
+  className="MuiGrid-root makeStyles-root-1 MuiGrid-container"
+>
+  <div
+    className="MuiGrid-root makeStyles-image-3 MuiGrid-item MuiGrid-grid-sm-4 MuiGrid-grid-md-7"
+  />
+  <div
+    className="MuiPaper-root MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-8 MuiGrid-grid-md-5 MuiPaper-elevation6"
+  >
+    <div
+      className="makeStyles-paper-4"
+    >
+      <h1
+        className="MuiTypography-root MuiTypography-h5"
+      >
+        Sign in
+      </h1>
+      <div
+        className="MuiFormControl-root MuiTextField-root MuiFormControl-marginNormal MuiFormControl-fullWidth"
+      >
+        <label
+          className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined Mui-required Mui-required"
+          data-shrink={false}
+          htmlFor="email"
+          id="email-label"
+        >
+          Email Address
+          <span
+            className="MuiFormLabel-asterisk MuiInputLabel-asterisk"
+          >
+             
+            *
+          </span>
+        </label>
+        <div
+          className="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
+          onClick={[Function]}
+        >
+          <input
+            aria-invalid={false}
+            autoComplete="email"
+            autoFocus={true}
+            className="MuiInputBase-input MuiOutlinedInput-input"
+            disabled={false}
+            id="email"
+            name="email"
+            onAnimationStart={[Function]}
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            required={true}
+            type="text"
+          />
+          <fieldset
+            aria-hidden={true}
+            className="PrivateNotchedOutline-root-229 MuiOutlinedInput-notchedOutline"
+          >
+            <legend
+              className="PrivateNotchedOutline-legendLabelled-231"
+            >
+              <span>
+                Email Address
+                 *
+              </span>
+            </legend>
+          </fieldset>
+        </div>
+      </div>
+      <div
+        className="MuiFormControl-root MuiTextField-root MuiFormControl-marginNormal MuiFormControl-fullWidth"
+      >
+        <label
+          className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined Mui-required Mui-required"
+          data-shrink={false}
+          htmlFor="password"
+          id="password-label"
+        >
+          Password
+          <span
+            className="MuiFormLabel-asterisk MuiInputLabel-asterisk"
+          >
+             
+            *
+          </span>
+        </label>
+        <div
+          className="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
+          onClick={[Function]}
+        >
+          <input
+            aria-invalid={false}
+            autoComplete="current-password"
+            autoFocus={false}
+            className="MuiInputBase-input MuiOutlinedInput-input"
+            disabled={false}
+            id="password"
+            name="password"
+            onAnimationStart={[Function]}
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            required={true}
+            type="password"
+          />
+          <fieldset
+            aria-hidden={true}
+            className="PrivateNotchedOutline-root-229 MuiOutlinedInput-notchedOutline"
+          >
+            <legend
+              className="PrivateNotchedOutline-legendLabelled-231"
+            >
+              <span>
+                Password
+                 *
+              </span>
+            </legend>
+          </fieldset>
+        </div>
+      </div>
+      <button
+        className="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-submit-7 MuiButton-containedPrimary MuiButton-fullWidth"
+        disabled={false}
+        onBlur={[Function]}
+        onClick={[MockFunction]}
+        onDragLeave={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        tabIndex={0}
+        type="submit"
+      >
+        <span
+          className="MuiButton-label"
+        >
+          Sign In
+        </span>
+      </button>
+      <div
+        className="MuiGrid-root MuiGrid-container"
+      >
+        <div
+          className="MuiGrid-root MuiGrid-item"
+        >
+          <a
+            className="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-body2 MuiTypography-colorPrimary"
+            href=""
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+          >
+            Don't have an account? Sign Up
+          </a>
+        </div>
+      </div>
+      <div
+        className="makeStyles-hr1-8"
+      >
+        <span
+          className="makeStyles-span-9"
+        >
+          OR
+        </span>
+      </div>
+      <div
+        className="makeStyles-root1-2"
+      >
+        <div
+          className="MuiAvatar-root MuiAvatar-circle"
+          onClick={[MockFunction]}
+        >
+          <img
+            alt="Facebook"
+            className="MuiAvatar-img"
+            src="data:image/jpeg;base64,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"
+          />
+        </div>
+        <div
+          className="MuiAvatar-root MuiAvatar-circle"
+          onClick={[MockFunction]}
+        >
+          <img
+            alt="Google"
+            className="MuiAvatar-img"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQVPa0tFvU8l3XSqWicWIJEHTXi4OIIyl5K4Yzoq4_Pd4sjv72O"
+          />
+        </div>
+      </div>
+      <div
+        className="MuiBox-root MuiBox-root-279"
+      >
+        <p
+          className="MuiTypography-root MuiTypography-body2 MuiTypography-colorTextSecondary MuiTypography-alignCenter"
+        >
+          Copyright © 
+          <a
+            className="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-colorInherit"
+            href="https://material-ui.com/"
+            onBlur={[Function]}
+            onFocus={[Function]}
+          >
+            Your Website
+          </a>
+           
+          2000
+          .
+        </p>
+      </div>
+    </div>
+  </div>
+</main>
+`;

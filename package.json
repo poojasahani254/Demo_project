@@ -7,10 +7,7 @@
     "@babel/polyfill": "^7.4.3",
     "@material-ui/core": "^4.9.5",
     "@material-ui/icons": "^4.9.1",
-    "@storybook/addon-actions": "^5.2.8",
-    "@storybook/addon-storyshots": "^5.2.8",
-    "@storybook/addon-viewport": "^5.2.8",
-    "@storybook/react": "^5.2.8",
+    "@material-ui/lab": "^4.0.0-alpha.46",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
@@ -29,10 +26,12 @@
     "mockdate": "^2.0.5",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.27",
+    "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-awesome-slider": "^4.1.0",
     "react-dom": "^16.13.1",
     "react-jss": "^10.1.1",
+    "react-localization": "^1.0.15",
     "react-notifications-component": "^2.3.0",
     "react-router": "^5.1.2",
     "react-router-dom": "^5.1.2",
@@ -46,11 +45,11 @@
     "build": "react-scripts build",
     "test": "jest",
     "eject": "react-scripts eject",
-    "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public",
     "test:unit": "node scripts/test.js --env=jsdom --testPathPattern=test\\.js$ --watch",
     "test:spec": "node scripts/test.js --env=jsdom --testPathPattern=spec\\.js$",
-    "test:all": "node scripts/test.js --env=jsdom --coverage"
+    "test:all": "node scripts/test.js --env=jsdom --coverage",
+    "storybook": "start-storybook -p 9009 -s public",
+    "build-storybook": "build-storybook -s public"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -113,6 +112,11 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-optional-chaining": "^7.2.0",
+    "@storybook/addon-actions": "^5.3.17",
+    "@storybook/addon-links": "^5.3.17",
+    "@storybook/addons": "^5.3.17",
+    "@storybook/preset-create-react-app": "^2.1.0",
+    "@storybook/react": "^5.3.17",
     "jsdom": "^13.1.0"
   }
 }

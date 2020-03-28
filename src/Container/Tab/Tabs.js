@@ -34,11 +34,11 @@ export default function ScrollableTabsButtonAuto() {
             />
         )
     }else{
-        return (
+        return (   
             <Tabs
                 Isdata ={false}
                 data ={data}
-                />
+                /> 
             )
     }
 }

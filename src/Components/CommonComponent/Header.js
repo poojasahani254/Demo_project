@@ -1,4 +1,5 @@
-import React from 'react';
+import React ,{useEffect} from 'react';
+import { useHistory } from "react-router-dom";
 import { makeStyles,useTheme,fade } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -15,17 +16,22 @@ import LocationSearching from '@material-ui/icons/LocationSearching';
 import ShoppingCart from '@material-ui/icons/ShoppingCart';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import Menu from '@material-ui/core/Menu';
-
+import { useTranslation } from 'react-i18next';
+    
 const names = [{
    name: 'Hindi',
+   key:'de',
     country:'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSYwNx8v8loriLiEhrh9c8rX-haH07MXuZPhBEXQhiaBpN0OQhP'
 },{
     name: 'English',
+    key:'en',
 }];
 function App(props) {
     const classes = useStyles();
     const theme = useTheme();
-    const [Lang, setLang] = React.useState(['English']);
+    const history=useHistory();
+    const { t,i18n } = useTranslation();
+    const [Lang, setLang] = React.useState(['en']);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
     const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -35,8 +41,12 @@ function App(props) {
     const ITEM_HEIGHT = 48;
     const ITEM_PADDING_TOP = 2;
 
+    useEffect(()=>{
+        i18n.changeLanguage("en");
+    },[])
     const handleChange = (event) => {
         setLang(event.target.value);
+        i18n.changeLanguage(event.target.value);
     };
 
     const getStyles=(name ,Lang,theme) =>{
@@ -87,6 +97,10 @@ function App(props) {
     );
 
     const mobileMenuId = 'primary-search-account-menu-mobile';
+
+    const handleLocation = ()=>{
+        history.push('/maps')
+    }
     const renderMobileMenu = (
         <Menu
             anchorEl={mobileMoreAnchorEl}
@@ -97,7 +111,7 @@ function App(props) {
             open={isMobileMenuOpen}
             onClose={handleMobileMenuClose}
         >
-            <MenuItem>
+            <MenuItem onClick={handleLocation}>
                 <IconButton aria-label="show 4 new mails" color="inherit">
                         <LocationSearching />
                 </IconButton>
@@ -137,7 +151,7 @@ function App(props) {
                             <SearchIcon />
                         </div>
                         <InputBase
-                            placeholder="Search…"
+                            placeholder={t('Search')}
                             classes={{
                                 root: classes.inputRoot,
                                 input: classes.inputInput,
@@ -147,7 +161,7 @@ function App(props) {
                     </div>
                     <Divider orientation="vertical" flexItem={true} variant="middle"/>
                     <div className={classes.sectionDesktop}>
-                        <IconButton aria-label="show 4 new mails" color="inherit">
+                        <IconButton aria-label="show 4 new mails" color="inherit" onClick={handleLocation}>
                                 <LocationSearching color="primary"/>
                         </IconButton>
                         <IconButton
@@ -189,7 +203,7 @@ function App(props) {
                             MenuProps={MenuProps}
                         >
                             {names.map(item => (
-                                <MenuItem key={item.name} value={item.name} style={getStyles(item.name, Lang, theme)}>
+                                <MenuItem key={item.key} value={item.key} style={getStyles(item.name, Lang, theme)}>
                                     {item.name}
                                     {/*<img src={item.country} style={{height:'5vh'}}/>*/}
                                 </MenuItem>

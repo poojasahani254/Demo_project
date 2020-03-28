@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import SignUp from '../Components/RegisterUser/Signup'
 import SignIn from '../Container/Login/signin';
 import DashBoard from '../Components/Dashboard/Dashboard';
+import Maps from '../Components/Maps/index';
 import {BASE_URL} from '../Constant';
 
 class Router extends Component {
@@ -31,6 +32,9 @@ class Router extends Component {
             <Switch>
                 <Private exact path={`${BASE_URL}Dashboard`}
                          component={() => <DashBoard value={this.props.value}/>}/>
+                <Private exact path={`${BASE_URL}maps`}
+                         component={() => <Maps value={this.props.value}/>}/>
+ 
                 <Public exact path={`${BASE_URL}`} component={() => <SignIn {...this.props}/>}/>
                 <Public exact path={`${BASE_URL}Signup`} component={() => <SignUp {...this.props}/>}/>
             </Switch>

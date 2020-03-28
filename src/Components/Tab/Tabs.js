@@ -3,20 +3,23 @@ import { makeStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Skeleton from '@material-ui/lab/Skeleton';
-
+// import { translate, Trans } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 const a11yProps=(index) =>{
     return {
         id: `scrollable-auto-tab-${index}`,
         'aria-controls': `scrollable-auto-tabpanel-${index}`,
     };
 }
-export default function ScrollableTabsButtonAuto(props) {
+ function ScrollableTabsButtonAuto(props) {
     const classes = useStyles();
-    const items = props.data.map((item,index) => <Tab label={item.Category} key={item.id} {...a11yProps(index)}  classes={classes} />)
-    
+    const { t } = useTranslation();
+
+    console.log(props)
+    const items = props.data.map((item,index) => <Tab label= {t(`category.${item.Category.trim()}`)} key={item.id} {...a11yProps(index)}  classes={classes} />)
     return (
         <div className={classes.root}>
-            {
+           {
                 props.Isdata?
                 <Tabs
                     value={props.value}
@@ -36,6 +39,7 @@ export default function ScrollableTabsButtonAuto(props) {
     );
 }
 
+export  default  (ScrollableTabsButtonAuto)
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,

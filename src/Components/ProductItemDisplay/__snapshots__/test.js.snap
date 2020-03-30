@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Product Item In Component Snapshot 1`] = `
+<div
+  className="MuiPaper-root MuiCard-root makeStyles-root-1 MuiPaper-elevation1 MuiPaper-rounded"
+>
+  <div
+    className="MuiCardContent-root"
+  >
+    <center>
+      <img
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSD1f6W0XF7yLqAJ_R7wH0ltBba5-cdFTidhhLEYES1RqrBK5uj"
+      />
+    </center>
+    <p
+      className="MuiTypography-root MuiTypography-body2 MuiTypography-colorTextSecondary"
+    >
+      This impressive paella is a perfect party dish and a fun meal to cook together with your guests.
+    </p>
+    <h5
+      className="MuiTypography-root MuiTypography-h5 MuiTypography-colorTextSecondary"
+    >
+      ₹
+      150
+    </h5>
+    <button
+      className="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedSecondary MuiButton-fullWidth"
+      disabled={false}
+      onBlur={[Function]}
+      onDragLeave={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      tabIndex={0}
+      type="button"
+    >
+      <span
+        className="MuiButton-label"
+      >
+        <span
+          className="MuiButton-startIcon MuiButton-iconSizeMedium"
+        >
+          <svg
+            aria-hidden="true"
+            className="MuiSvgIcon-root"
+            focusable="false"
+            role="presentation"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M16 6V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H2v13c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6h-6zm-6-2h4v2h-4V4zM9 18V9l7.5 4L9 18z"
+            />
+          </svg>
+        </span>
+        Add To Cart
+      </span>
+    </button>
+  </div>
+</div>
+`;

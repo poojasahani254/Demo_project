@@ -31,7 +31,8 @@ function App(props) {
     const theme = useTheme();
     const history=useHistory();
     const { t,i18n } = useTranslation();
-    const [Lang, setLang] = React.useState(['en']);
+    const defaultLang=localStorage.getItem('DefaultLang') ? localStorage.getItem('DefaultLang') : 'en';
+    const [Lang, setLang] = React.useState([defaultLang]);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
     const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -41,14 +42,12 @@ function App(props) {
     const ITEM_HEIGHT = 48;
     const ITEM_PADDING_TOP = 2;
 
-    useEffect(()=>{
-        i18n.changeLanguage("en");
-    },[])
     const handleChange = (event) => {
         setLang(event.target.value);
+        localStorage.setItem('DefaultLang', event.target.value);
         i18n.changeLanguage(event.target.value);
     };
-
+    
     const getStyles=(name ,Lang,theme) =>{
         return {
             fontWeight:

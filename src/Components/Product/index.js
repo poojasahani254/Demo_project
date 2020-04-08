@@ -3,7 +3,6 @@ import Header from '../CommonComponent/Header';
 import Tabs from '../../Container/Tab/Tabs'
 import ProductItem from '../../Container/ProductItemDisplay/index'
 class App extends React.Component{
-
     render(){
         return (
             <>
@@ -15,6 +14,5 @@ class App extends React.Component{
             </>
         );
     }
-
 }
 export default App;

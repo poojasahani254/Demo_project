@@ -3,13 +3,16 @@ import Tabs from '../../Components/Tab/Tabs'
 import Api from '../../config/config'
 
 export default function ScrollableTabsButtonAuto() {
-    const [value, setValue] = useState(0);
+    const index=localStorage.getItem('index') ? localStorage.getItem('index') : 0;
+    const [value, setValue] = useState(parseInt(index));
     const [data,setdata] = useState([]);
 
     const handleChange = (event,newValue) => {
         setValue(newValue);
+        localStorage.setItem('index', newValue);
+ 
     };
-
+    
     useEffect(()=>{
         let arr=[]
         Api("Category","","get").then((res)=>{

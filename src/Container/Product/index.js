@@ -4,7 +4,7 @@ import Product from '../../Components/Product/index'
     // const classes = useStyles();
     return (
        <div style={{margin:'9px'}}>
-       <Product  />
+           <Product  />
        </div>
     )
 }

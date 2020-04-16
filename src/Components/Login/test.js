@@ -17,7 +17,7 @@ const setup = () =>{
       <Login {...props} />
   ).toJSON()
   return {
-    tree,
+    tree,  
     props,
     component,
     instance
@@ -36,7 +36,7 @@ describe('Sign In Component',()=>{
         expect(component.find(Button)).toHaveLength(1)
     })
     it('should work onChange of login input',()=>{
-        const {component} = setup()
+        const {compon  ent } = setup()
         const loginInput = component.find('#email')
         expect(loginInput).toHaveLength(1)
         loginInput.simulate('change', { target: { value: 'xyz@gmail.com' } })

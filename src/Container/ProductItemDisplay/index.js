@@ -1,18 +1,20 @@
 import React from 'react';
 import ProductDisplay from '../../Components/ProductItemDisplay/index';
+import { useHistory } from 'react-router-dom'
+import {BASE_URL} from '../../Constant';
 
- function Product() {
+ function Product(props) {
     // const classes = useStyles();
-    const data={
-        "id":"123",
-        "price":"150.00",
-        "description":"This impressive paella is a perfect party dish and a fun meal to cook together with your guests.",
-    }
-    const handleClick =()=>{
-        alert('hello Click Button')
+    const history=useHistory()
+
+    const handleClick =(value)=>{
+         history.push({
+             pathname:`${BASE_URL}OrderSummary`,
+                   })
+        alert('hello Click Button'+JSON.stringify(value))
     }
     return (
-       <ProductDisplay handleClick={handleClick} data={data} />
+       <ProductDisplay handleClick={handleClick} {...props} />
     )
 }
 export  default  (Product)

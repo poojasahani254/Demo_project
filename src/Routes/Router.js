@@ -4,6 +4,7 @@ import SignUp from '../Components/RegisterUser/Signup'
 import SignIn from '../Container/Login/signin';
 import DashBoard from '../Components/Dashboard/Dashboard';
 import Maps from '../Components/Maps/index';
+import OrderSummary from '../Components/OrderSummary/index'
 import ProductDisplay from '../Container/Product/index';
 import {BASE_URL} from '../Constant';
 
@@ -33,6 +34,9 @@ class Router extends Component {
             <Switch>
                 <Private exact path={`${BASE_URL}Dashboard`}
                          component={() => <DashBoard value={this.props.value}/>}/>
+
+                <Private exact path={`${BASE_URL}OrderSummary`}
+                         component={() => <OrderSummary value={this.props.value}/>}/>         
                 <Private exact path={`${BASE_URL}maps`}
                          component={() => <Maps value={this.props.value}/>}/>
                 <Private exact path={`${BASE_URL}Product`} component={() => <ProductDisplay {...this.props}/>}/>

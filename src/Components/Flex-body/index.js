@@ -11,7 +11,6 @@ class App extends React.Component{
                 <div style={{marginTop:'2px'}}>
                     <Tabs />
                 </div>
-                <ProductItem {...this.props} />
             </>
         );
     }

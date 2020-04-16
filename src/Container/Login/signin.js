@@ -46,7 +46,7 @@ export default function SignInSide(props) {
                 firstName:name[0],
                 lastName:name[1],
                 address:'',
-                password:'',
+                 password:'',
                 cnumber:res.user.phoneNumber
             }
             Api("customer",data,"postWithDoc").then((res1)=>{

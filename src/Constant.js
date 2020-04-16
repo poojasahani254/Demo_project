@@ -12,6 +12,7 @@ let env = process.env.NODE_ENV;
 // }
 module.exports = {
     BASE_URL: env === 'development' ? '/' : '/test-2/',
+    ImageURL:"https://firebasestorage.googleapis.com/v0/b/fir-3d365.appspot.com/o/",
     APIKEY:"AIzaSyAxF7AOuGWPXnjJtkpsVSMjX0zY400LInI",
     AUTHDOMAIN:"fir-3d365.firebaseapp.com",
     DATABASEURL:"https://fir-3d365.firebaseio.com",

@@ -18,7 +18,7 @@ function Copyright() {
                 Your Website
             </Link>{' '}
             {new Date().getFullYear()}
-            {'.'}
+              {'.'}
         </Typography>
     );
 }
@@ -43,8 +43,8 @@ export default function SignInSide(props) {
                             label="Email Address"
                             name="email"
                             autoComplete="email"
-                            onChange={props.handleChange}
-                            autoFocus
+                            onChange={props.handleChange}             
+                             autoFocus
                         />
                         <TextField
                             variant="outlined"

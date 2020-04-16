@@ -13,7 +13,7 @@ function Slider(props) {
     })
     const { translate, transition ,activeIndex,flag} = state
     const images = [
-        'https://images.unsplash.com/photo-1470341223622-1019832be824?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2288&q=80',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQLmp9icI7a20lXl0k9zQpyGGu6rO8SB4R_DhuaVCr7bMD6Dpj1&usqp=CAU',
         'https://images.unsplash.com/photo-1448630360428-65456885c650?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2094&q=80',
         'https://images.unsplash.com/photo-1534161308652-fdfcf10f62c4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2174&q=80'
     ]

@@ -10,136 +10,69 @@ import { useTranslation } from 'react-i18next';
 export default function RecipeReviewCard(props) {
   const classes = useStyles();
   const { t } = useTranslation();
-
+  console.log("props product item",props);
   return ( 
-    <div style={{display:'flex',height:'100%'}}>
-    <Card className={classes.root}>
-      <CardContent className={classes.cardContent}>
-          <center>
-         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSD1f6W0XF7yLqAJ_R7wH0ltBba5-cdFTidhhLEYES1RqrBK5uj" />
-         </center>
-        <Typography variant="body2" color="textSecondary" component="p">
-          {props.data.description}
-        </Typography>
-        <Typography variant="h5" color="textSecondary">
-            {'\u20B9'}{props.data.price}
-        </Typography>
-        <Button
-            variant="contained"
-            color="secondary"
-            className={classes.button}
-            startIcon={<DeleteIcon />}
-            fullWidth={true}
-            onClick={props.handleClick}
-        >
-       { t('Add To Cart')}
-      </Button>
-      </CardContent>
-    </Card>  
-    <Card className={classes.root}>
-      <CardContent className={classes.cardContent}>
-          <center>
-         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSD1f6W0XF7yLqAJ_R7wH0ltBba5-cdFTidhhLEYES1RqrBK5uj" />
-         </center>
-        <Typography variant="body2" color="textSecondary" component="p">
-          {props.data.description}
-        </Typography>
-        <Typography variant="h5" color="textSecondary">
-            {'\u20B9'}{props.data.price}
-        </Typography>
-        <Button
-            variant="contained"
-            color="secondary"
-            className={classes.button}
-            startIcon={<DeleteIcon />}
-            fullWidth={true}
-            onClick={props.handleClick}
-        >
-       { t('Add To Cart')}
-      </Button>
-      </CardContent>
-    </Card> 
-    <Card className={classes.root}>
-      <CardContent className={classes.cardContent}>
-          <center>
-         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSD1f6W0XF7yLqAJ_R7wH0ltBba5-cdFTidhhLEYES1RqrBK5uj" />
-         </center>
-        <Typography variant="body2" color="textSecondary" component="p">
-          {props.data.description}
-        </Typography>
-        <Typography variant="h5" color="textSecondary">
-            {'\u20B9'}{props.data.price}
-        </Typography>
-        <Button
-            variant="contained"
-            color="secondary"
-            className={classes.button}
-            startIcon={<DeleteIcon />}
-            fullWidth={true}
-            onClick={props.handleClick}
-        >
-       { t('Add To Cart')}
-      </Button>
-      </CardContent>
-    </Card> 
-    <Card className={classes.root}>
-      <CardContent className={classes.cardContent}>
-          <center>
-         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSD1f6W0XF7yLqAJ_R7wH0ltBba5-cdFTidhhLEYES1RqrBK5uj" />
-         </center>
-        <Typography variant="body2" color="textSecondary" component="p">
-          {props.data.description}
-        </Typography>
-        <Typography variant="h5" color="textSecondary">
-            {'\u20B9'}{props.data.price}
-        </Typography>
-        <Button
-            variant="contained"
-            color="secondary"
-            className={classes.button}
-            startIcon={<DeleteIcon />}
-            fullWidth={true}
-            onClick={props.handleClick}
-        >
-       { t('Add To Cart')}
-      </Button>
-      </CardContent>
-    </Card> 
-    <Card className={classes.root}>
-      <CardContent className={classes.cardContent}>
-          <center>
-         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSD1f6W0XF7yLqAJ_R7wH0ltBba5-cdFTidhhLEYES1RqrBK5uj" />
-         </center>
-        <Typography variant="body2" color="textSecondary" component="p">
-          {props.data.description}
-        </Typography>
-        <Typography variant="h5" color="textSecondary">
-            {'\u20B9'}{props.data.price}
-        </Typography>
-        <Button
-            variant="contained"
-            color="secondary"
-            className={classes.button}
-            startIcon={<DeleteIcon />}
-            fullWidth={true}
-            onClick={props.handleClick}
-        >
-       { t('Add To Cart')}
-      </Button>
-      </CardContent>
-    </Card> 
-    
-    </div>   
+    <div  className={classes.rootDiv}>
+    {
+      props.Isdata?
+      props.data.map((item,index)=>{
+
+        let url=`https://firebasestorage.googleapis.com/v0/b/fir-3d365.appspot.com/o/${item.Product_image}`
+        return (
+          <Card className={classes.root} key={index}>
+          <CardContent className={classes.cardContent}>
+              <center>
+             <img style={{height:'30vh',width:'20vw'}} src={url} />
+            </center>
+            <Typography variant="body2" color="textSecondary" component="p">
+              {item.Product_name}
+            </Typography>
+            <Typography variant="h5" color="textSecondary">
+                {'\u20B9'}{item.Product_price}
+            </Typography>
+            <Button
+                variant="contained"
+                color="secondary"
+                className={classes.button}
+                startIcon={<DeleteIcon />}
+                fullWidth={true}
+                onClick={()=>props.handleClick(item)}
+            >
+          { t('Add To Cart')}
+          </Button>
+           <Button
+                variant="contained"
+                color="primary"
+                className={classes.button}
+                startIcon={<DeleteIcon />}
+                fullWidth={true}
+                onClick={()=>props.handleClick(item)}
+            >
+          { t('Buy Now')}
+          </Button>
+          </CardContent>
+    </Card>
+        )        
+      })
+      :
+      <div>Data Not Availble</div>
+    }
+    </div>     
   )
 }
 const useStyles = makeStyles((theme) => ({
     root: {
-      maxWidth: 300,
+      maxWidth: 321,
       maxHeight: 400,
       margin:'5px'
     },cardContent: {
       flexGrow: 1,
       textAlign:'center',
       justifyContent:'center'
-  },  
+  }, rootDiv:{
+      display:'flex',
+      flexFlow:'wrap'
+  },button:{
+    marginBottom:3
+  }
 }));

@@ -19,12 +19,15 @@ import Menu from '@material-ui/core/Menu';
 import { useTranslation } from 'react-i18next';
     
 const names = [{
-   name: 'Hindi',
+   name: 'हिन्दी',
    key:'de',
     country:'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSYwNx8v8loriLiEhrh9c8rX-haH07MXuZPhBEXQhiaBpN0OQhP'
 },{
     name: 'English',
     key:'en',
+},{
+    name: 'ગુજરાતી',
+    key:'gu',
 }];
 function App(props) {
     const classes = useStyles();
@@ -41,7 +44,7 @@ function App(props) {
 
     const ITEM_HEIGHT = 48;
     const ITEM_PADDING_TOP = 2;
-
+         
     const handleChange = (event) => {
         setLang(event.target.value);
         localStorage.setItem('DefaultLang', event.target.value);
@@ -67,9 +70,10 @@ function App(props) {
         setAnchorEl(null);
         handleMobileMenuClose();
     };
+    
     const handleMobileMenuOpen = (event) => {
         setMobileMoreAnchorEl(event.currentTarget);
-    };
+    };               
 
     const menuId = 'primary-search-account-menu';
     const MenuProps = {
@@ -79,7 +83,7 @@ function App(props) {
                 width: 100,
             },
         },
-    };
+      };
     const renderMenu = (
         <Menu
             anchorEl={anchorEl}
@@ -205,6 +209,7 @@ function App(props) {
                                 <MenuItem key={item.key} value={item.key} style={getStyles(item.name, Lang, theme)}>
                                     {item.name}
                                     {/*<img src={item.country} style={{height:'5vh'}}/>*/}
+               
                                 </MenuItem>
                             ))}
                         </Select>

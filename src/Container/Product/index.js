@@ -6,7 +6,7 @@ import Api from '../../config/config';
  function Products(props) {
     // const classes = useStyles();
     const [data,setdata] = useState([]);
-    console.log("id",props.location.state.data)
+    // console.log("id",props.location.state.data)
 
     useEffect(()=>{
        

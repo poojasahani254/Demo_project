@@ -3,15 +3,13 @@
 exports[`Sign In Component Snapshot 1`] = `
 <main
   className="MuiGrid-root makeStyles-root-1 MuiGrid-container"
+  maxWidth="xs"
 >
-  <div
-    className="MuiGrid-root makeStyles-image-3 MuiGrid-item MuiGrid-grid-sm-4 MuiGrid-grid-md-7"
-  />
   <div
     className="MuiPaper-root MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-8 MuiGrid-grid-md-5 MuiPaper-elevation6"
   >
     <div
-      className="makeStyles-paper-4"
+      className="makeStyles-paper-3"
     >
       <h1
         className="MuiTypography-root MuiTypography-h5"
@@ -56,10 +54,10 @@ exports[`Sign In Component Snapshot 1`] = `
           />
           <fieldset
             aria-hidden={true}
-            className="PrivateNotchedOutline-root-229 MuiOutlinedInput-notchedOutline"
+            className="PrivateNotchedOutline-root-228 MuiOutlinedInput-notchedOutline"
           >
             <legend
-              className="PrivateNotchedOutline-legendLabelled-231"
+              className="PrivateNotchedOutline-legendLabelled-230"
             >
               <span>
                 Email Address
@@ -107,10 +105,10 @@ exports[`Sign In Component Snapshot 1`] = `
           />
           <fieldset
             aria-hidden={true}
-            className="PrivateNotchedOutline-root-229 MuiOutlinedInput-notchedOutline"
+            className="PrivateNotchedOutline-root-228 MuiOutlinedInput-notchedOutline"
           >
             <legend
-              className="PrivateNotchedOutline-legendLabelled-231"
+              className="PrivateNotchedOutline-legendLabelled-230"
             >
               <span>
                 Password
@@ -121,10 +119,10 @@ exports[`Sign In Component Snapshot 1`] = `
         </div>
       </div>
       <button
-        className="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-submit-7 MuiButton-containedPrimary MuiButton-fullWidth"
+        className="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-submit-6 MuiButton-containedPrimary MuiButton-fullWidth"
         disabled={false}
         onBlur={[Function]}
-        onClick={[MockFunction]}
+        onClick={[Function]}
         onDragLeave={[Function]}
         onFocus={[Function]}
         onKeyDown={[Function]}
@@ -162,10 +160,10 @@ exports[`Sign In Component Snapshot 1`] = `
         </div>
       </div>
       <div
-        className="makeStyles-hr1-8"
+        className="makeStyles-hr1-7"
       >
         <span
-          className="makeStyles-span-9"
+          className="makeStyles-span-8"
         >
           OR
         </span>
@@ -175,7 +173,7 @@ exports[`Sign In Component Snapshot 1`] = `
       >
         <div
           className="MuiAvatar-root MuiAvatar-circle"
-          onClick={[MockFunction]}
+          onClick={[Function]}
         >
           <img
             alt="Facebook"
@@ -185,7 +183,7 @@ exports[`Sign In Component Snapshot 1`] = `
         </div>
         <div
           className="MuiAvatar-root MuiAvatar-circle"
-          onClick={[MockFunction]}
+          onClick={[Function]}
         >
           <img
             alt="Google"
@@ -195,7 +193,7 @@ exports[`Sign In Component Snapshot 1`] = `
         </div>
       </div>
       <div
-        className="MuiBox-root MuiBox-root-279"
+        className="MuiBox-root MuiBox-root-278"
       >
         <p
           className="MuiTypography-root MuiTypography-body2 MuiTypography-colorTextSecondary MuiTypography-alignCenter"

@@ -6,6 +6,8 @@ import DashBoard from '../Components/Dashboard/Dashboard';
 import Maps from '../Components/Maps/index';
 import OrderSummary from '../Components/OrderSummary/index'
 import ProductDisplay from '../Container/Product/index';
+import Cart from '../Components/Cart/index';
+
 import {BASE_URL} from '../Constant';
 
 class Router extends Component {
@@ -24,23 +26,25 @@ class Router extends Component {
         const Public = ({component: Component, permission, ...rest}) => (
             <Route {...rest} render={(routeProps) => {
                 return (
-                    item==null
+                    item!=null || item==null
                         ? <Component {...routeProps} />
-                        : <Redirect to={`${BASE_URL}Dashboard`}/>
+                        : <Redirect to={`${BASE_URL}`}/>
                 )
             }}/>
         );
         return (
             <Switch>
-                <Private exact path={`${BASE_URL}Dashboard`}
+                <Public exact path={`${BASE_URL}`}
                          component={() => <DashBoard value={this.props.value}/>}/>
 
-                <Private exact path={`${BASE_URL}OrderSummary`}
-                         component={() => <OrderSummary value={this.props.value}/>}/>         
-                <Private exact path={`${BASE_URL}maps`}
+                <Public exact path={`${BASE_URL}OrderSummary`}
+                         component={() => <OrderSummary value={this.props.value}/>}/>   
+                <Public exact path={`${BASE_URL}Cart`}
+                         component={() => <Cart value={this.props.value}/>}/>        
+                <Public exact path={`${BASE_URL}maps`}
                          component={() => <Maps value={this.props.value}/>}/>
-                <Private exact path={`${BASE_URL}Product`} component={() => <ProductDisplay {...this.props}/>}/>
-                <Public exact path={`${BASE_URL}`} component={() => <SignIn {...this.props}/>}/>
+                <Public exact path={`${BASE_URL}Product`} component={() => <ProductDisplay {...this.props}/>}/>
+                <Public exact path={`${BASE_URL}SignIn`} component={() => <SignIn {...this.props}/>}/>
                 <Public exact path={`${BASE_URL}Signup`} component={() => <SignUp {...this.props}/>}/>
             </Switch>
         )

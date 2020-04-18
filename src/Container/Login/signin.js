@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import Login from '../../Components/Login/signIn';
 import Api from '../../config/config';
 import {useHistory} from "react-router";
+import {BASE_URL} from '../../Constant';
+
 
 export default function SignInSide(props) {
     const history=useHistory();
@@ -32,7 +34,7 @@ export default function SignInSide(props) {
             localStorage.setItem('user', JSON.stringify(data));
             localStorage.setItem('accessToken', res.credential!=null && res.credential.accessToken);
             localStorage.setItem('idToken', res.credential!=null &&  res.credential.idToken);
-            history.push('/Dashboard')
+            history.push(`${BASE_URL}`)
         }).catch((err)=>{
             alert("Please Provide Valid Username and Password")
         })
@@ -51,7 +53,7 @@ export default function SignInSide(props) {
             }
             Api("customer",data,"postWithDoc").then((res1)=>{
                 setData(res)
-                history.push('/Dashboard')
+                history.push(`${BASE_URL}`)
             }).catch((err)=>{
                 console.log('Error Occured While Login with Google',err)
             });
@@ -74,7 +76,7 @@ export default function SignInSide(props) {
             // console.log(data)
             Api("customer",data,"postWithDoc").then((res1)=>{
                 setData(res)
-                history.push('/Dashboard')
+                history.push(`${BASE_URL}`)
             }).catch((err)=>{
                 console.log('Error Occured While Login with Google',err)
             });
@@ -89,10 +91,10 @@ export default function SignInSide(props) {
     }
     return (
         <Login 
-        handleSubmit={handleSubmit}
-        handleGoogleLogin={handleGoogleLogin}
-        handleFacebookLogin={handleFacebookLogin}
-        handleChange={handleChange}
+            handleSubmit={handleSubmit}
+            handleGoogleLogin={handleGoogleLogin}
+            handleFacebookLogin={handleFacebookLogin}
+            handleChange={handleChange}
         />
     )
 }

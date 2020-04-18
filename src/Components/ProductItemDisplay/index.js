@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import DeleteIcon from '@material-ui/icons/Shop';
 import Button from '@material-ui/core/Button';
 import { useTranslation } from 'react-i18next';
+import DataNotFound from '../CommonComponent/NotFound';
 
 export default function RecipeReviewCard(props) {
   const classes = useStyles();
@@ -46,7 +47,7 @@ export default function RecipeReviewCard(props) {
                 className={classes.button}
                 startIcon={<DeleteIcon />}
                 fullWidth={true}
-                onClick={()=>props.handleClick(item)}
+                onClick={()=>props.handleBuyNow(item)}
             >
           { t('Buy Now')}
           </Button>
@@ -55,7 +56,7 @@ export default function RecipeReviewCard(props) {
         )        
       })
       :
-      <div>Data Not Availble</div>
+      <DataNotFound data={props.data} />
     }
     </div>     
   )

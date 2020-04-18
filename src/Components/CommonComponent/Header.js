@@ -17,7 +17,8 @@ import ShoppingCart from '@material-ui/icons/ShoppingCart';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import Menu from '@material-ui/core/Menu';
 import { useTranslation } from 'react-i18next';
-    
+import {BASE_URL} from '../../Constant';
+
 const names = [{
    name: 'हिन्दी',
    key:'de',
@@ -66,6 +67,9 @@ function App(props) {
         setMobileMoreAnchorEl(null);
     };
 
+    const handleSignin = () =>{
+        history.push(`${BASE_URL}SignIn`)
+    }
     const handleMenuClose = () => {
         setAnchorEl(null);
         handleMobileMenuClose();
@@ -75,6 +79,10 @@ function App(props) {
         setMobileMoreAnchorEl(event.currentTarget);
     };               
 
+    const handleLogout= () =>{
+        localStorage.clear()
+        history.push(`${BASE_URL}`)
+    }
     const menuId = 'primary-search-account-menu';
     const MenuProps = {
         PaperProps: {
@@ -94,8 +102,18 @@ function App(props) {
             open={isMenuOpen}
             onClose={handleMenuClose}
         >
-            <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-            <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+            {
+                localStorage.getItem('user')!=null ?
+                <>
+                <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+                <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+                <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                
+                </>
+                :
+                <MenuItem onClick={handleSignin}>Sign In</MenuItem>  
+            }
+           
         </Menu>
     );
 

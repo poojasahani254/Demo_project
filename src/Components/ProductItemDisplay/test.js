@@ -5,12 +5,17 @@ import { Typography, Button } from '@material-ui/core'
 import ProductItem from './index'
 const setup = () =>{
     const props = {
-        handleChange: jest.fn(),
-        data:{
-            "id":"123",
-            "price":"150",
-            "description":"This impressive paella is a perfect party dish and a fun meal to cook together with your guests.",
-          },
+        handleChange: ()=>{},
+        data:[{
+            id:"3Wbt1Pu9GpJSbxAh7Kk9",
+            Product_description: "ddsfdsfdsf",
+            Product_price:150,
+            Category_id: "0XDs3dDagImeGAgrWZe9",
+            Product_image: "vanila.jpg?alt=media&token=8a8e2d40-9f18-46ed-b56a-9fd64a553e24",
+            Product_name:"Vanila Chocolate"
+          }
+          ],
+          Isdata: true
       }
 
   const component = shallow(<ProductItem {...props} />)
@@ -34,6 +39,6 @@ describe('Product Item In Component',()=>{
     it('Should Render Child Component Correctly',()=>{
         const { component } = setup()
         expect(component.find(Typography)).toHaveLength(2)
-        expect(component.find(Button)).toHaveLength(1)
+        expect(component.find(Button)).toHaveLength(2)
     })
 })

@@ -10,7 +10,9 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-
+import {BASE_URL} from '../../Constant';
+import {useHistory} from 'react-router-dom';
+import Paper from '@material-ui/core/Paper';
 import Api from '../../config/config';
 
 function Copyright() {
@@ -27,7 +29,7 @@ function Copyright() {
 }
 const SignUp = (props) => {
     const classes = useStyles();
-
+    const history=useHistory();
     const [value,setvalue]=useState({
         email:'',
         firstName:'',
@@ -58,7 +60,7 @@ const SignUp = (props) => {
         }))
     }
     return (
-        <Container component="main" maxWidth="xs">
+        <Container component={Paper} maxWidth="xs">
             <CssBaseline />
             <div className={classes.paper}>
                 <Avatar className={classes.avatar}>
@@ -158,7 +160,7 @@ const SignUp = (props) => {
                     <Grid container justify="flex-end">
                         <Grid item>
                             <Link href="" variant="body2" onClick={()=>{
-                                props.history.push('/')
+                                props.history.push(`${BASE_URL}SignIn`)
                             }}>
                                 Already have an account? Sign in
                             </Link>

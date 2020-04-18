@@ -10,6 +10,7 @@ export default function ScrollableTabsButtonAuto() {
     const handleChange = (event,newValue) => {
         setValue(newValue);
         localStorage.setItem('index', newValue);
+
         
     };
     
@@ -20,8 +21,10 @@ export default function ScrollableTabsButtonAuto() {
                 arr.push({"id" : item.id,
                 "Category":item.data().category_name
                })
+               return true
             })
             setdata(arr)
+            return true
 
         }).catch((error)=>{
             console.log('Error',error)

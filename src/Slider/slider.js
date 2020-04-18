@@ -9,9 +9,8 @@ function Slider(props) {
         activeIndex: 0,
         translate: 0,
         transition: 0.45,
-        flag:false
     })
-    const { translate, transition ,activeIndex,flag} = state
+    const { translate, transition ,activeIndex} = state
     const images = [
         'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQLmp9icI7a20lXl0k9zQpyGGu6rO8SB4R_DhuaVCr7bMD6Dpj1&usqp=CAU',
         'https://images.unsplash.com/photo-1448630360428-65456885c650?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2094&q=80',

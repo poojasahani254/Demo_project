@@ -11,7 +11,6 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {BASE_URL} from '../../Constant';
-import {useHistory} from 'react-router-dom';
 import Paper from '@material-ui/core/Paper';
 import Api from '../../config/config';
 
@@ -29,7 +28,6 @@ function Copyright() {
 }
 const SignUp = (props) => {
     const classes = useStyles();
-    const history=useHistory();
     const [value,setvalue]=useState({
         email:'',
         firstName:'',
@@ -39,7 +37,7 @@ const SignUp = (props) => {
         cnumber:''
     })
     const handleSubmit =  () =>{
-        const userRef = Api("customer",value,"post").then((res)=>{
+        return Api("customer",value,"post").then((res)=>{
                 Api("",{email:value.email,password:value.password},"CreatAuth").then(()=>{
                     props.history.push('/')
                 }).catch(()=>{
@@ -49,7 +47,7 @@ const SignUp = (props) => {
         }).catch((err)=>{
             return err
         });
-        console.log('useRef',userRef)
+        // console.log('useRef',userRef)
     };
 
     const handleChange =(event) =>{

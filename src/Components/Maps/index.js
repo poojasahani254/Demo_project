@@ -4,7 +4,7 @@ import { geolocated } from "react-geolocated";
 
 
  function ScrollableTabsButtonAuto(props) {
-   console.log('loc',props)
+  //  console.log('loc',props)
      return (
         <Map google={props.google} zoom={14}  initialCenter={{
           lat: 21.193820,

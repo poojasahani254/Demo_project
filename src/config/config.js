@@ -24,9 +24,9 @@ let firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-db.settings({
-    timestampsInSnapshots: true
-});
+// db.settings({
+//     timestampsInSnapshots: true
+// });
 
 const Api = (route,data, method) => {
     switch (method) {
@@ -36,21 +36,19 @@ const Api = (route,data, method) => {
             }).catch((err)=>{
                 return Promise.reject(err);
             });
-            break;
+
         case 'postWithDoc':
             return db.collection(route).doc(data.id).set(data).then((res)=>{
                 return Promise.resolve(res);
             }).catch((err)=>{
                 return Promise.reject(err);
             });
-            break;
         case 'get':
             return db.collection(route).get().then((res)=>{
                 return Promise.resolve(res);
             }).catch((err)=>{
                 return Promise.reject(err);
             });
-            break;
         case 'delete':
             break;
         case 'patch':
@@ -62,7 +60,7 @@ const Api = (route,data, method) => {
             }).catch((err)=>{
                 return Promise.reject(err);
             });
-            break;
+            
         case 'getAuth':
             return firebase.auth().signInWithEmailAndPassword(data.email,data.password)
                 .then((res)=>{
@@ -70,7 +68,6 @@ const Api = (route,data, method) => {
                 }).catch((err)=>{
                     return Promise.reject(err);
                 })
-             break;
         case 'GoogleAuth':
             let provider = new firebase.auth.GoogleAuthProvider();
            return  firebase.auth().signInWithPopup(provider).then((result)=> {
@@ -78,7 +75,6 @@ const Api = (route,data, method) => {
             }).catch(function(error) {
                 return Promise.reject(error);
             });
-           break;
         case 'FacebookAuth':
             let fbprovider = new firebase.auth.FacebookAuthProvider();
             return firebase.auth().signInWithRedirect(fbprovider).then((result)=> {
@@ -100,7 +96,10 @@ const Api = (route,data, method) => {
         //         return Promise.reject(error);
         //     });
 
+        default:
+            return true
+
     }
-};
+}
 
 export default Api;

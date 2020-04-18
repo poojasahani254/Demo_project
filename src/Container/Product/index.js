@@ -9,11 +9,10 @@ import Api from '../../config/config';
     // console.log("id",props.location.state.data)
 
     useEffect(()=>{
-       
         Api("Product","","get").then((res)=>{
             let arr=[]
             res.docs.map(item=>{
-                if(item.data().category_id==props.location.state.data){
+                if(item.data().category_id === props.location.state.data){
                     arr.push({
                         "id" : item.id,
                         "Product_description":item.data().Product_description,
@@ -22,14 +21,16 @@ import Api from '../../config/config';
                         "Category_id":item.data().category_id,
                         "Product_image":item.data().Product_image
                      })
-                }          
+                     
+                }    
+                return true      
             })
             setdata(arr)
            
         }).catch((error)=>{
             console.log('Error',error)
         })
-        console.log("props product",data)
+        // console.log("props product",data)
     },[])
 
 if(data.length>0){

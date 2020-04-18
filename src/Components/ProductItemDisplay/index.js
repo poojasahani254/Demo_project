@@ -11,7 +11,7 @@ import DataNotFound from '../CommonComponent/NotFound';
 export default function RecipeReviewCard(props) {
   const classes = useStyles();
   const { t } = useTranslation();
-  console.log("props product item",props);
+  // console.log("props product item",props);
   return ( 
     <div  className={classes.rootDiv}>
     {
@@ -23,7 +23,7 @@ export default function RecipeReviewCard(props) {
           <Card className={classes.root} key={index}>
           <CardContent className={classes.cardContent}>
               <center>
-             <img style={{height:'30vh',width:'20vw'}} src={url} />
+             <img style={{height:'30vh',width:'20vw'}} src={url} alt='' />
             </center>
             <Typography variant="body2" color="textSecondary" component="p">
               {item.Product_name}

@@ -19,12 +19,12 @@ const properties = {
     arrows: true,
     pauseOnHover: true,
     onChange: (oldIndex, newIndex) => {
-        console.log(`slide transition from ${oldIndex} to ${newIndex}`);
+        // console.log(`slide transition from ${oldIndex} to ${newIndex}`);
     }
 }
 
 const Slideshow = () => {
-    const classes = useStyles();
+    // const classes = useStyles();
     return (
         <div className="slide-container">
             <Slide {...properties}>

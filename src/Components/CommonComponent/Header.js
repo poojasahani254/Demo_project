@@ -1,4 +1,4 @@
-import React ,{useEffect} from 'react';
+import React  from 'react';
 import { useHistory } from "react-router-dom";
 import { makeStyles,useTheme,fade } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
@@ -92,6 +92,21 @@ function App(props) {
             },
         },
       };
+
+    const arr=[
+        {
+            action:handleMenuClose,
+            title:'Profile'
+        },
+        {
+            action:handleMenuClose,
+            title:'My account'
+        },
+        {
+        action:handleLogout,
+        title:'Logout'
+        }
+    ]
     const renderMenu = (
         <Menu
             anchorEl={anchorEl}
@@ -100,20 +115,13 @@ function App(props) {
             keepMounted
             transformOrigin={{ vertical: 'top', horizontal: 'right' }}
             open={isMenuOpen}
-            onClose={handleMenuClose}
-        >
+            onClose={handleMenuClose}>
             {
                 localStorage.getItem('user')!=null ?
-                <>
-                <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-                <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-                <MenuItem onClick={handleLogout}>Logout</MenuItem>
-                
-                </>
+                arr.map((item,index)=>{return <MenuItem onClick={item.action} key={index}>{item.title}</MenuItem>})
                 :
                 <MenuItem onClick={handleSignin}>Sign In</MenuItem>  
-            }
-           
+            }           
         </Menu>
     );
 
@@ -151,13 +159,12 @@ function App(props) {
             </MenuItem>
             <MenuItem>
                 <IconButton aria-label="show 11 new notifications" color="inherit">
-                    <Badge badgeContent={17} color="secondary">
+                    <Badge badgeContent={1} color="secondary">
                         <ShoppingCart />
                     </Badge>
                 </IconButton>
                 <p>Cart</p>
             </MenuItem>
-
         </Menu>
     );
 
@@ -165,7 +172,7 @@ function App(props) {
         <div className={classes.root}>
                 <Toolbar>
                     <div className={classes.title}>
-                        <img src='https://pngimage.net/wp-content/uploads/2018/05/amul-logo-png-1.png' className={classes.img}/>
+                        <img src='https://pngimage.net/wp-content/uploads/2018/05/amul-logo-png-1.png' className={classes.img} alt=''/>
                     </div>
                     <div className={classes.search}>
                         <div className={classes.searchIcon}>
@@ -248,9 +255,8 @@ const useStyles=makeStyles(theme => ({
         backgroundColor:'white',
         boxShadow:'0px 1px 1px -1px rgba(0,0,0,0.2), ' +
             '0px 2px 2px 0px rgba(0, 0, 0, 0), ' +
-            '0px 1px 1px 0px rgba(0,0,0,-0.12)',
-
-},
+            '0px 1px 1px 0px rgba(0,0,0,-0.12)', 
+    },
     menuButton: {
         marginRight: theme.spacing(2),
     },

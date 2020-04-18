@@ -2,7 +2,6 @@ import React from 'react';
 import ProductDisplay from '../../Components/ProductItemDisplay/index';
 import { useHistory } from 'react-router-dom'
 import {BASE_URL} from '../../Constant';
-import Cart from '../../Components/Cart/index';
 
  function Product(props) {
     // const classes = useStyles();

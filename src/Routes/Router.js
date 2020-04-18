@@ -14,15 +14,15 @@ class Router extends Component {
     render() {
         const item= localStorage.getItem('user')
         // console.log(item+"item")
-        const Private = ({component: Component, permission, ...rest}) => (
-            <Route {...rest} render={(routeProps) => {
-                return (
-                    item!=null && item
-                        ? <Component {...routeProps} />
-                        : <Redirect to={`${BASE_URL}`}/>
-                )
-            }}/>
-        );
+        // const Private = ({component: Component, permission, ...rest}) => (
+        //     <Route {...rest} render={(routeProps) => {
+        //         return (
+        //             item!=null && item
+        //                 ? <Component {...routeProps} />
+        //                 : <Redirect to={`${BASE_URL}`}/>
+        //         )
+        //     }}/>
+        // );
         const Public = ({component: Component, permission, ...rest}) => (
             <Route {...rest} render={(routeProps) => {
                 return (

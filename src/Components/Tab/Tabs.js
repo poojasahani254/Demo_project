@@ -19,7 +19,7 @@ const a11yProps=(index) =>{
     const history=useHistory()
     
     const handleClick =(value)=>{ 
-        console.log(props.data[props.value].id)
+        // console.log(props.data[props.value].id)
         history.push({
              pathname:`${BASE_URL}Product`,
              state: { data: props.data[localStorage.getItem('index')].id }

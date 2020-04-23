@@ -14,10 +14,15 @@ import {BASE_URL} from '../../Constant';
         // alert('hello Click Button'+JSON.stringify(value))
     }
     const handleBuyNowClick =(value)=>{
+        let arr=[];
+        arr.push(value);
+
         history.push({
             pathname:`${BASE_URL}OrderSummary`,
+            state:arr
                   })
-       alert('hello Click Button'+JSON.stringify(value))
+
+
    }
     return (
        <ProductDisplay handleClick={handleCartClick} handleBuyNow={handleBuyNowClick} {...props} />

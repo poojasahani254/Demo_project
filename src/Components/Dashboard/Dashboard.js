@@ -1,16 +1,12 @@
 import React from 'react';
-import Header from '../CommonComponent/Header';
-import Tabs from '../../Container/Tab/Tabs'
 import Slide from '../../Slider/slider';
+import HeadeProtion from '../CommonComponent/CombineComponent';
 class App extends React.Component{
 
     render(){
         return (
             <div>
-                <Header/>
-                <div style={{marginTop:'2px'}}>
-                    <Tabs/>
-                </div>
+              <HeadeProtion />
                 <Slide/>
             </div>
         );

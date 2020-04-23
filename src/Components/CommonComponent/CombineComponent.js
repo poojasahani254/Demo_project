@@ -1,18 +1,18 @@
 import React from 'react';
-import Header from '../CommonComponent/Header';
+import Header from './Header';
 import Tabs from '../../Container/Tab/Tabs'
-import ProductItem from '../../Container/ProductItemDisplay/index'
+
 class App extends React.Component{
-    
-    render(){      
+    render(){
         return (
-            <>
+            <div>
                 <Header/>
                 <div style={{marginTop:'2px'}}>
-                    <Tabs />
+                    <Tabs/>
                 </div>
-            </>
+            </div>
         );
     }
+
 }
 export default App;

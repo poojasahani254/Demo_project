@@ -1,75 +1,114 @@
-import React from 'react';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import React, {useState} from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
-import PlayArrowIcon from '@material-ui/icons/PlayArrow';
-import SkipNextIcon from '@material-ui/icons/SkipNext';
+import TextField from '@material-ui/core/TextField';
+import clsx from 'clsx';
+import {ImageURL} from '../../Constant';
 
+export default function MediaControlCard(props) {
+    const classes = useStyles();
+    const [value,setvalue]=useState(1);
+
+ return (
+    <div className={classes.MainDiv}>
+        {
+            props.location.state.map((item,index)=>{
+                return(
+                    <Card className={classes.root} key={index}>
+                        <div className={classes.rootEle}>
+                            <img src={ImageURL+item.Product_image} style={{height:'60%',width:'60%'}} />
+                            <div className={classes.controls}>
+                                <div className={classes.button} onClick={()=>{alert('hello')}}>
+                                    <center><span className={classes.span} >-</span></center>
+                                </div>
+                                <TextField
+                                    id="outlined-start-adornment"
+                                    className={clsx(classes.margin, classes.textField)}
+                                    variant="outlined"
+                                    size="small"
+                                    value={value}
+                                />
+                                <div className={classes.button} onClick={()=>{alert('hello')}}>
+                                    <center><span className={classes.span} >+</span></center>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div className={classes.details}>
+                            <Typography component="h5" variant="h6">
+                                {item.Product_name}
+                            </Typography>
+                            <Typography  variant="subtitle2">
+                                {item.Product_description}
+                            </Typography>
+                            <Typography variant="subtitle2">
+                                {'\u20B9'}{item.Product_price}
+                            </Typography>
+                            <Button className={classes.btn}>REMOVE</Button>
+                        </div>
+                    </Card>
+                )
+            })
+        }
+
+        <Button
+            variant="contained"
+            color="primary"
+            className={classes.button}
+            fullWidth={true}
+            onClick={props.handleChange}
+        >
+           Continue
+        </Button>
+    </div>
+  );
+}
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
-    width:'30vw',
-    height:'25vh'
+    width:'100%',
+    marginBottom:theme.spacing(1),
   },
   details: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  content: {
-    flex: '1 0 auto',
-  },
-  cover: {
-    width: 170,
+      width:'90%',
+      margin:theme.spacing(4)
+      // alignItems:'flex-start'
   },
   controls: {
     display: 'flex',
-    alignItems: 'center',
-    paddingLeft: theme.spacing(1),
-    paddingBottom: theme.spacing(1),
+    paddingLeft: theme.spacing(3),
+    paddingBottom: theme.spacing(2),
+    marginTop:theme.spacing(2)
   },
-  playIcon: {
-    height: 38,
-    width: 38,
-  },
+  textField: {
+    width: '7ch',
+    height: '0.1875em',
+    alignContent:'center'
+  }, button:{
+    background: 'rgb(174,181,221)',
+    color: 'black',
+    minWidth: '40px' ,
+    boxSizing: 'border-box',
+    lineHeight: 3,
+    borderRadius: '20px',
+},span:{
+    width: '100%',
+    color:'white',
+    fontSize:'0.875rem',
+},margin:{
+  margin:theme.spacing(1)
+},rootEle:{
+  display:'flex',
+  flexDirection:'column',
+  alignItems:'center',
+
+},btn:{
+  marginTop:theme.spacing(8),
+  fontSize:'0.999rem',
+},MainDiv:{
+        width:'100%',
+        height:'auto',
+    }
 }));
-
-export default function MediaControlCard() {
-  const classes = useStyles();
-  const theme = useTheme();
-
-  return (
-    <Card className={classes.root}>
-      
-      <CardMedia
-        className={classes.cover}
-        image="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRpUSOjyyb12OidaRkYSLF_z3HFOhchktEs2tHMDfrbIdzY6m7f&usqp=CAU"
-      />
-      <div className={classes.details}>
-        <CardContent className={classes.content}>
-          <Typography component="h5" variant="h5">
-            Vanila
-          </Typography>
-          <Typography variant="subtitle1" color="textSecondary">
-          {'\u20B9'}45
-          </Typography>
-        </CardContent>
-        <div className={classes.controls}>
-          <IconButton aria-label="previous">
-            {theme.direction === 'rtl' ? <SkipNextIcon /> : <SkipPreviousIcon />}
-          </IconButton>
-          <IconButton aria-label="play/pause">
-            <PlayArrowIcon className={classes.playIcon} />
-          </IconButton>
-          <IconButton aria-label="next">
-            {theme.direction === 'rtl' ? <SkipPreviousIcon /> : <SkipNextIcon />}
-          </IconButton>
-        </div>
-      </div>
-      
-    </Card>
-  );
-}

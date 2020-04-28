@@ -8,11 +8,12 @@ import Button from '@material-ui/core/Button';
 import { useTranslation } from 'react-i18next';
 import DataNotFound from '../CommonComponent/NotFound';
 import Pagination from '@material-ui/lab/Pagination';
+import Modal from '../Modal/index';
 
 export default function RecipeReviewCard(props) {
   const classes = useStyles();
   const { t } = useTranslation();
-  // console.log("props product item",props);
+  // console.log("props",props);
     const page=0;
     const [totalPage,setPages]=useState(0);
     const [pageLimit,setPageLimit]=useState(8);
@@ -21,6 +22,7 @@ export default function RecipeReviewCard(props) {
     useEffect(()=>{
         Getdata(page)
     },[props])
+
     const Getdata = page =>{
         if(props.Isdata){
             let total=Math.ceil(props.data.length / pageLimit);
@@ -29,12 +31,15 @@ export default function RecipeReviewCard(props) {
             setData(arr.slice(page*pageLimit,page+1*pageLimit))
         }
     }
+
     const handleChange=(event,page1)=>{
         Getdata(page1-1)
     }
+
     return (
     <>
     <div  className={classes.rootDiv}>
+      <Modal {...props} />
     {
       props.Isdata?
       data.map((item,index)=>{
@@ -42,7 +47,6 @@ export default function RecipeReviewCard(props) {
         return (
           <Card className={classes.root} key={index}>
           <CardContent className={classes.cardContent}>
-
              <img style={{height:'30vh',width:'20vw'}} src={url} alt='' />
 
             <Typography variant="body2" color="textSecondary" component="p">
@@ -57,7 +61,7 @@ export default function RecipeReviewCard(props) {
                 className={classes.button}
                 startIcon={<DeleteIcon />}
                 fullWidth={true}
-                onClick={()=>props.handleClick(item)}
+                onClick={()=>props.HandleModal(item)}
             >
           { t('Add To Cart')}
           </Button>
@@ -73,7 +77,6 @@ export default function RecipeReviewCard(props) {
           </Button>
           </CardContent>
     </Card>
-
         )
       })
       :

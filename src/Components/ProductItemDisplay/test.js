@@ -5,7 +5,8 @@ import { Typography, Button } from '@material-ui/core'
 import ProductItem from './index'
 const setup = () =>{
     const props = {
-        handleChange: ()=>{},
+        handleBuyNow: jest.fn(),
+        handleClick: jest.fn(),
         data:[{
             id:"3Wbt1Pu9GpJSbxAh7Kk9",
             Product_description: "ddsfdsfdsf",
@@ -13,9 +14,8 @@ const setup = () =>{
             Category_id: "0XDs3dDagImeGAgrWZe9",
             Product_image: "vanila.jpg?alt=media&token=8a8e2d40-9f18-46ed-b56a-9fd64a553e24",
             Product_name:"Vanila Chocolate"
-          }
-          ],
-          Isdata: true
+          }],
+        Isdata : true
       }
 
   const component = shallow(<ProductItem {...props} />)
@@ -41,4 +41,5 @@ describe('Product Item In Component',()=>{
         expect(component.find(Typography)).toHaveLength(2)
         expect(component.find(Button)).toHaveLength(2)
     })
+
 })

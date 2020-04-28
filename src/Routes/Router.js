@@ -7,7 +7,7 @@ import Maps from '../Components/Maps/index';
 import OrderSummary from '../Components/OrderSummary/index'
 import ProductDisplay from '../Container/Product/index';
 import Cart from '../Components/Cart/index';
-
+import AddToCart from  '../Components/AddToCart/index';
 import {BASE_URL} from '../Constant';
 
 class Router extends Component {
@@ -38,14 +38,15 @@ class Router extends Component {
                          component={() => <DashBoard value={this.props.value}/>}/>
 
                 <Public exact path={`${BASE_URL}OrderSummary`}
-                         component={() => <OrderSummary value={this.props.value}/>}/>   
+                         component={() => <OrderSummary value={this.props.value}/>}/>
                 <Public exact path={`${BASE_URL}Cart`}
-                         component={() => <Cart value={this.props.value}/>}/>        
+                         component={() => <Cart value={this.props.value}/>}/>
                 <Public exact path={`${BASE_URL}maps`}
                          component={() => <Maps value={this.props.value}/>}/>
                 <Public exact path={`${BASE_URL}Product`} component={() => <ProductDisplay {...this.props}/>}/>
                 <Public exact path={`${BASE_URL}SignIn`} component={() => <SignIn {...this.props}/>}/>
                 <Public exact path={`${BASE_URL}Signup`} component={() => <SignUp {...this.props}/>}/>
+                <Public exact path={`${BASE_URL}AddToCart`} component={() => <AddToCart {...this.props}/>}/>
             </Switch>
         )
     }

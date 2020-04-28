@@ -31,18 +31,26 @@ export default function CustomizedExpansionPanels(props) {
   const [expanded, setExpanded] = React.useState('panel1');
   const [value, setValue] = React.useState('Phone Pe');
   const [total,setTotal]=useState(0.00);
-    const paypalOptions = {
+
+  const buttonStyles = {
+        layout: 'vertical',
+        shape: 'rect',
+    }
+  const paypalOptions = {
         clientId: 'AZk7GYWuBuLoD5cNJjuaYu5wsE9Zjwaaz_DNBMnGg1_lVKG9lELVMfZDDfpmFnLchYuLK9JHeuW2RBv0',
         intent: 'capture'
     }
-    useEffect(()=>{
-        history.location.state.map(item=>{
-            // console.log(item.Product_price)
-            setTotal(item.Product_price)
-            return item.Product_price
 
+    useEffect(()=>{
+        let tot=0
+        history.location.state.map(item=>{
+             console.log(item.Product_price)
+
+            tot += item.data.Product_price * item.qty
         })
-    },[]);
+        setTotal(tot)
+    },[history.location.state]);
+
    const handleRadio = (event) => {
         setValue(event.target.value);
     };
@@ -52,29 +60,8 @@ export default function CustomizedExpansionPanels(props) {
 
     };
 
-    const buttonStyles = {
-        layout: 'vertical',
-        shape: 'rect',
-    }
-   const handlePayment = () =>{
-       // let data = JSON.stringify(false);
-       //
-       // let xhr = new XMLHttpRequest();
-       // xhr.withCredentials = true;
-       //
-       // xhr.addEventListener("readystatechange", function () {
-       //     if (this.readyState === this.DONE) {
-       //         console.log(this.responseText);
-       //     }
-       // });
-       //
-       // xhr.open("POST", "https://mercury-uat.phonepe.com/v4/debit/");
-       // xhr.setRequestHeader("content-type", "application/json");
-       // xhr.setRequestHeader("x-verify", "X-VERIFY");
-       //
-       // xhr.send(data);
 
-   }
+
   return (
     <>
         <Header />
@@ -99,20 +86,20 @@ export default function CustomizedExpansionPanels(props) {
 
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails>
-                      <Typography>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-                        sit amet blandit leo lobortis eget. Lorem ipsum dolor sit amet, consectetur adipiscing
-                        elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.
-                      </Typography>
-                        <Button
-                            variant="contained"
-                            color="primary"
-                            className={classes.button}
-                            fullWidth={true}
-                            onClick={handleChange('panel2')}
-                        >
-                            Continue
-                        </Button>
+                        <div className={classes.container}>
+                            <Typography>
+                                Please Login to Purchase Product
+                            </Typography>
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                className={classes.button}
+                                // onClick={handleChange('panel2')}
+                            >
+                                SignIn
+                            </Button>
+                        </div>
+
                     </ExpansionPanelDetails>
                   </ExpansionPanel>
                   <ExpansionPanel square expanded={expanded === 'panel2'}>
@@ -288,6 +275,7 @@ const ExpansionPanelSummary = withStyles({
     },
     expanded: {},
 })(MuiExpansionPanelSummary);
+
 const useStyles = makeStyles((theme) => ({
     button:{
         background: 'rgb(174,181,221)',

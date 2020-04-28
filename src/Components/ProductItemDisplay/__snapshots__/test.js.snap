@@ -1,116 +1,87 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Product Item In Component Snapshot 1`] = `
-<div
-  className="makeStyles-rootDiv-3"
->
+Array [
   <div
-    className="MuiPaper-root MuiCard-root makeStyles-root-1 MuiPaper-elevation1 MuiPaper-rounded"
-  >
-    <div
-      className="MuiCardContent-root makeStyles-cardContent-2"
+    className="makeStyles-rootDiv-3"
+  />,
+  <div>
+     
+    <nav
+      aria-label="pagination navigation"
+      className="MuiPagination-root"
     >
-      <center>
-        <img
-          src="https://firebasestorage.googleapis.com/v0/b/fir-3d365.appspot.com/o/vanila.jpg?alt=media&token=8a8e2d40-9f18-46ed-b56a-9fd64a553e24"
-          style={
-            Object {
-              "height": "30vh",
-              "width": "20vw",
-            }
-          }
-        />
-      </center>
-      <p
-        className="MuiTypography-root MuiTypography-body2 MuiTypography-colorTextSecondary"
+      <ul
+        className="MuiPagination-ul"
       >
-        Vanila Chocolate
-      </p>
-      <h5
-        className="MuiTypography-root MuiTypography-h5 MuiTypography-colorTextSecondary"
-      >
-        ₹
-        150
-      </h5>
-      <button
-        className="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-button-4 MuiButton-containedSecondary MuiButton-fullWidth"
-        disabled={false}
-        onBlur={[Function]}
-        onClick={[Function]}
-        onDragLeave={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        onKeyUp={[Function]}
-        onMouseDown={[Function]}
-        onMouseLeave={[Function]}
-        onMouseUp={[Function]}
-        onTouchEnd={[Function]}
-        onTouchMove={[Function]}
-        onTouchStart={[Function]}
-        tabIndex={0}
-        type="button"
-      >
-        <span
-          className="MuiButton-label"
-        >
-          <span
-            className="MuiButton-startIcon MuiButton-iconSizeMedium"
+        <li>
+          <button
+            aria-label="Go to previous page"
+            className="MuiButtonBase-root MuiPaginationItem-root MuiPaginationItem-page MuiPaginationItem-textPrimary Mui-disabled Mui-disabled"
+            disabled={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onDragLeave={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            tabIndex={-1}
+            type="button"
           >
             <svg
               aria-hidden="true"
-              className="MuiSvgIcon-root"
+              className="MuiSvgIcon-root MuiPaginationItem-icon"
               focusable="false"
               role="presentation"
               viewBox="0 0 24 24"
             >
               <path
-                d="M16 6V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H2v13c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6h-6zm-6-2h4v2h-4V4zM9 18V9l7.5 4L9 18z"
+                d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"
               />
             </svg>
-          </span>
-          Add To Cart
-        </span>
-      </button>
-      <button
-        className="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-button-4 MuiButton-containedPrimary MuiButton-fullWidth"
-        disabled={false}
-        onBlur={[Function]}
-        onClick={[Function]}
-        onDragLeave={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        onKeyUp={[Function]}
-        onMouseDown={[Function]}
-        onMouseLeave={[Function]}
-        onMouseUp={[Function]}
-        onTouchEnd={[Function]}
-        onTouchMove={[Function]}
-        onTouchStart={[Function]}
-        tabIndex={0}
-        type="button"
-      >
-        <span
-          className="MuiButton-label"
-        >
-          <span
-            className="MuiButton-startIcon MuiButton-iconSizeMedium"
+          </button>
+        </li>
+        <li>
+          <button
+            aria-label="Go to next page"
+            className="MuiButtonBase-root MuiPaginationItem-root MuiPaginationItem-page MuiPaginationItem-textPrimary Mui-disabled Mui-disabled"
+            disabled={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onDragLeave={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            tabIndex={-1}
+            type="button"
           >
             <svg
               aria-hidden="true"
-              className="MuiSvgIcon-root"
+              className="MuiSvgIcon-root MuiPaginationItem-icon"
               focusable="false"
               role="presentation"
               viewBox="0 0 24 24"
             >
               <path
-                d="M16 6V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H2v13c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6h-6zm-6-2h4v2h-4V4zM9 18V9l7.5 4L9 18z"
+                d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
               />
             </svg>
-          </span>
-          Buy Now
-        </span>
-      </button>
-    </div>
-  </div>
-</div>
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </div>,
+]
 `;

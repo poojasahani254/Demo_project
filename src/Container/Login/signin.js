@@ -3,13 +3,16 @@ import Login from '../../Components/Login/signIn';
 import Api from '../../config/config';
 import {useHistory} from "react-router";
 import {BASE_URL} from '../../Constant';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-
+toast.configure()
 export default function SignInSide(props) {
     const history=useHistory();
     const [value,setvalue]=useState({
         email:'',
         password:'',
+        showPassword: false,
     })
 
     const handleChange =(event) =>{
@@ -19,6 +22,13 @@ export default function SignInSide(props) {
             [name] : value
         }))
     }
+    const handleClickShowPassword = () => {
+        setvalue({ ...value, showPassword: !value.showPassword });
+    };
+    const notify = (msg) => toast.error(msg,{
+        position: toast.POSITION.TOP_CENTER
+    });
+
     const handleSubmit =() =>{
         Api("",{email:value.email,password:value.password},"getAuth").then((res)=>{
             // console.log(res)
@@ -36,7 +46,8 @@ export default function SignInSide(props) {
             localStorage.setItem('idToken', res.credential!=null &&  res.credential.idToken);
             history.push(`${BASE_URL}`)
         }).catch((err)=>{
-            alert("Please Provide Valid Username and Password")
+            notify('Please Provide Valid Username and Password')
+            // alert("Please Provide Valid Username and Password")
         })
     }
     const handleGoogleLogin = ()=>{
@@ -90,11 +101,13 @@ export default function SignInSide(props) {
         localStorage.setItem('idToken', res.credential.idToken);
     }
     return (
-        <Login 
+        <Login
             handleSubmit={handleSubmit}
             handleGoogleLogin={handleGoogleLogin}
             handleFacebookLogin={handleFacebookLogin}
             handleChange={handleChange}
+            handleClickShowPassword={handleClickShowPassword}
+            showPassword={value.showPassword}
         />
     )
 }

@@ -3,13 +3,19 @@ import './App.css';
 import Route from "./Routes/Router";
 import {Router} from "react-router-dom";
 import {createBrowserHistory} from 'history';
-const history = createBrowserHistory()
+import {Provider} from 'react-redux';
+import configstore from '../src/Store/Store';
 
-function App() {
+const history = createBrowserHistory();
+
+const App = () =>{
   return (
-      <Router history={history}>
-        <Route />
-      </Router>
+      <Provider store={configstore}>
+          <Router history={history}>
+            <Route />
+          </Router>
+      </Provider>
   );
 }
+
 export default App;

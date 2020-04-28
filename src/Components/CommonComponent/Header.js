@@ -18,6 +18,7 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import Menu from '@material-ui/core/Menu';
 import { useTranslation } from 'react-i18next';
 import {BASE_URL} from '../../Constant';
+import { useSelector } from 'react-redux';
 
 const names = [{
    name: 'हिन्दी',
@@ -36,22 +37,27 @@ function App(props) {
     const history=useHistory();
     const { t,i18n } = useTranslation();
     const defaultLang=localStorage.getItem('DefaultLang') ? localStorage.getItem('DefaultLang') : 'en';
+    const oldproduct = localStorage.getItem('Data') ? localStorage.getItem('Data') : "[]";
+    const user =  JSON.parse(oldproduct);
+
     const [Lang, setLang] = React.useState([defaultLang]);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
     const [anchorEl, setAnchorEl] = React.useState(null);
+    // const user = useSelector(state => state.ProductReducers.AddtoCartData);
 
+    const mobileMenuId = 'primary-search-account-menu-mobile';
+    const menuId = 'primary-search-account-menu';
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
     const ITEM_HEIGHT = 48;
     const ITEM_PADDING_TOP = 2;
-         
+
     const handleChange = (event) => {
         setLang(event.target.value);
         localStorage.setItem('DefaultLang', event.target.value);
         i18n.changeLanguage(event.target.value);
     };
-    
+
     const getStyles=(name ,Lang,theme) =>{
         return {
             fontWeight:
@@ -74,16 +80,16 @@ function App(props) {
         setAnchorEl(null);
         handleMobileMenuClose();
     };
-    
+
     const handleMobileMenuOpen = (event) => {
         setMobileMoreAnchorEl(event.currentTarget);
-    };               
+    };
 
     const handleLogout= () =>{
         localStorage.clear()
         history.push(`${BASE_URL}`)
     }
-    const menuId = 'primary-search-account-menu';
+
     const MenuProps = {
         PaperProps: {
             style: {
@@ -100,19 +106,20 @@ function App(props) {
         },
         {
             action:handleMenuClose,
-            title:'My account'
+            title:'My Orders'
         },
         {
         action:handleLogout,
         title:'Logout'
         }
     ]
+
     const renderMenu = (
         <Menu
             anchorEl={anchorEl}
             anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
             id={menuId}
-            keepMounted
+            keepMountednpm sy
             transformOrigin={{ vertical: 'top', horizontal: 'right' }}
             open={isMenuOpen}
             onClose={handleMenuClose}>
@@ -120,16 +127,22 @@ function App(props) {
                 localStorage.getItem('user')!=null ?
                 arr.map((item,index)=>{return <MenuItem onClick={item.action} key={index}>{item.title}</MenuItem>})
                 :
-                <MenuItem onClick={handleSignin}>Sign In</MenuItem>  
-            }           
+                <MenuItem onClick={handleSignin}>Sign In</MenuItem>
+            }
         </Menu>
     );
 
-    const mobileMenuId = 'primary-search-account-menu-mobile';
 
     const handleLocation = ()=>{
         history.push('/maps')
     }
+
+    const handleCartItem  = () =>{
+        history.push({
+            pathname:`${BASE_URL}AddToCart`,
+        })
+    }
+
     const renderMobileMenu = (
         <Menu
             anchorEl={mobileMoreAnchorEl}
@@ -158,8 +171,8 @@ function App(props) {
                 <p>Profile</p>
             </MenuItem>
             <MenuItem>
-                <IconButton aria-label="show 11 new notifications" color="inherit">
-                    <Badge badgeContent={1} color="secondary">
+                <IconButton aria-label="show 11 new notifications" color="inherit" onClick={handleCartItem}>
+                    <Badge badgeContent={user.length} color="secondary">
                         <ShoppingCart />
                     </Badge>
                 </IconButton>
@@ -202,8 +215,8 @@ function App(props) {
                         >
                             <AccountCircle color="primary"/>
                         </IconButton>
-                        <IconButton aria-label="show 17 new notifications" color="inherit">
-                            <Badge badgeContent={17} color="secondary">
+                        <IconButton aria-label="show new notifications" color="inherit" onClick={handleCartItem}>
+                            <Badge badgeContent={user.length} color="secondary">
                                 <ShoppingCart color="primary"/>
                             </Badge>
                         </IconButton>
@@ -234,7 +247,6 @@ function App(props) {
                                 <MenuItem key={item.key} value={item.key} style={getStyles(item.name, Lang, theme)}>
                                     {item.name}
                                     {/*<img src={item.country} style={{height:'5vh'}}/>*/}
-               
                                 </MenuItem>
                             ))}
                         </Select>
@@ -255,7 +267,7 @@ const useStyles=makeStyles(theme => ({
         backgroundColor:'white',
         boxShadow:'0px 1px 1px -1px rgba(0,0,0,0.2), ' +
             '0px 2px 2px 0px rgba(0, 0, 0, 0), ' +
-            '0px 1px 1px 0px rgba(0,0,0,-0.12)', 
+            '0px 1px 1px 0px rgba(0,0,0,-0.12)',
     },
     menuButton: {
         marginRight: theme.spacing(2),

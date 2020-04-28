@@ -9,7 +9,14 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import {BASE_URL} from '../../Constant';
-
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import IconButton from '@material-ui/core/IconButton';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+import { useHistory } from 'react-router-dom';
 
 function Copyright() {
     return (
@@ -24,8 +31,10 @@ function Copyright() {
     );
 }
 
-export default function SignInSide(props) {
+const  SignInSide = (props) =>{
     const classes = useStyles();
+    const history = useHistory();
+
     return (
         <Grid container component="main"  maxWidth="xs" className={classes.root}>
             <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
@@ -42,21 +51,38 @@ export default function SignInSide(props) {
                             label="Email Address"
                             name="email"
                             autoComplete="email"
-                            onChange={props.handleChange}             
+                            onChange={props.handleChange}
                              autoFocus
                         />
-                        <TextField
-                            variant="outlined"
-                            margin="normal"
-                            required
-                            fullWidth
+                    <FormControl
+                        variant="outlined"
+                        fullWidth
+                        margin="normal"
+                        required
+                    >
+                    <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+                        <OutlinedInput
                             name="password"
                             label="Password"
-                            type="password"
+                            type={props.showPassword ? 'text' : 'password'}
                             id="password"
                             onChange={props.handleChange}
                             autoComplete="current-password"
+                            endAdornment={
+                                <InputAdornment position="end">
+                                    <IconButton
+                                        aria-label="toggle password visibility"
+                                        onClick={props.handleClickShowPassword}
+                                        onMouseDown={props.handleMouseDownPassword}
+                                        edge="end"
+                                    >
+                                        {props.showPassword ? <Visibility /> : <VisibilityOff />}
+                                    </IconButton>
+                                </InputAdornment>
+                            }
+
                         />
+                    </FormControl>
                         <Button
                             type="submit"
                             fullWidth
@@ -75,8 +101,8 @@ export default function SignInSide(props) {
                             {/* </Grid> */}
                             <Grid item >
                                 <Link href="" variant="body2" onClick={()=>{
-                                    props.history.push(`${BASE_URL}Signup`)
-                                }}>
+                                    history.push(`${BASE_URL}Signup`)
+                                }} data-test="ClickEvent">
                                     {"Don't have an account? Sign Up"}
                                 </Link>
                             </Grid>
@@ -98,6 +124,8 @@ export default function SignInSide(props) {
         </Grid>
     );
 }
+export default SignInSide;
+
 const useStyles = makeStyles(theme => ({
     root: {
         height: '100vh',

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import Button from '@material-ui/core/Button';
@@ -10,15 +10,20 @@ import {ImageURL} from '../../Constant';
 export default function MediaControlCard(props) {
     const classes = useStyles();
     const [value,setvalue]=useState(1);
+    const [data,setData] = useState([]);
+
+    useEffect(()=>{
+        setData(props.location.state)
+    },[props.location.state])
 
  return (
     <div className={classes.MainDiv}>
         {
-            props.location.state.map((item,index)=>{
+            data.map((item,index)=>{
                 return(
                     <Card className={classes.root} key={index}>
                         <div className={classes.rootEle}>
-                            <img src={ImageURL+item.Product_image} style={{height:'60%',width:'60%'}} />
+                            <img src={ImageURL+item.data.Product_image} style={{height:'200px',width:'200px'}} />
                             <div className={classes.controls}>
                                 <div className={classes.button} onClick={()=>{alert('hello')}}>
                                     <center><span className={classes.span} >-</span></center>
@@ -38,15 +43,19 @@ export default function MediaControlCard(props) {
                         </div>
                         <div className={classes.details}>
                             <Typography component="h5" variant="h6">
-                                {item.Product_name}
+                                {item.data.Product_name}
                             </Typography>
                             <Typography  variant="subtitle2">
-                                {item.Product_description}
+                                {item.data.Product_description}
                             </Typography>
                             <Typography variant="subtitle2">
-                                {'\u20B9'}{item.Product_price}
+                                {'\u20B9'}{item.data.Product_price}
                             </Typography>
-                            <Button className={classes.btn}>REMOVE</Button>
+                            <Button
+                                className={classes.btn}
+                                variant="contained"
+                                color={"primary"}
+                            >REMOVE</Button>
                         </div>
                     </Card>
                 )
@@ -105,7 +114,7 @@ const useStyles = makeStyles((theme) => ({
   alignItems:'center',
 
 },btn:{
-  marginTop:theme.spacing(8),
+  marginTop:theme.spacing(15),
   fontSize:'0.999rem',
 },MainDiv:{
         width:'100%',

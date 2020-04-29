@@ -5,8 +5,6 @@ import MuiExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import MuiExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import Check from '@material-ui/icons/Check';
-import Header from '../CommonComponent/Header';
-import Cart from '../Cart/index';
 import {
   InputLabel,
   Grid,
@@ -16,9 +14,15 @@ import Button from "@material-ui/core/Button";
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+
 import { useHistory} from 'react-router-dom';
 import { PayPalButton } from 'react-paypal-button';
 import  Modal from '../CommonComponent/Modal';
+import Header from '../CommonComponent/Header';
+import Cart from '../Cart/index';
+import {BASE_URL} from "../../Constant";
+import { notify} from "../CommonComponent/Alert";
+import Api from "../../config/config";
 
 const ExpansionPanelDetails = withStyles((theme) => ({
   root: {
@@ -33,8 +37,11 @@ export default function CustomizedExpansionPanels(props) {
   const [open,Setopen] = useState(false);
   const [value, setValue] = React.useState('PayPal');
   const [total,setTotal] = useState(0.00);
+  const [Ctot,setCtotal] = useState(0.00);
+  const [val,SetVal] = useState(false);
   const user = localStorage.getItem('user');
   const location = localStorage.getItem('location');
+
 
   const buttonStyles = {
         layout: 'vertical',
@@ -48,33 +55,74 @@ export default function CustomizedExpansionPanels(props) {
    }
 
     useEffect(()=>{
+
         let tot=0
         history.location.state.map(item=>{
             tot += item.data.Product_price * item.qty
         })
         setTotal(tot)
+        setCtotal((tot*0.01370).toFixed(2))
+
+        if(history.location.state[0].status===undefined){
+            SetVal(true)
+        }
 
         if(user!=null){
-            // if(user.firstName!=undefined){
-            //     setExpanded('panel2')
-            // }
             setExpanded('panel2')
             if(location!==null){
                 setExpanded('panel3')
             }
+            // if(user.firstName!=undefined){
+            //     setExpanded('panel2')
+            //     if(location!==null){
+            //         setExpanded('panel3')
+            //     }
+            // }else{
+            //     notify('Please Update You Details')
+            // }
+
         }
     },[history.location.state]);
 
    const handleRadio = (event) => {
         setValue(event.target.value);
     };
+
    const handleChange = (panel) => (event, newExpanded) => {
         setExpanded(newExpanded || newExpanded==undefined ? panel : false);
-
     };
 
    const handleLocation = () =>{
        Setopen(!open)
+   }
+   const handleCheckout = (mode) =>{
+
+
+       history.location.state.map((item,index)=>{
+
+           const data = {
+               orderDate: new Date().toLocaleDateString(),
+               Category_id: item.data.Category_id,
+               Price : item.data.Product_price,
+               Product_id : item.data.id,
+               mode: mode,
+               qty: item.qty,
+               user_id: JSON.parse(localStorage.getItem('user')).id
+
+           }
+           Api("order",data,"post").then((res)=>{
+
+               history.push(`${BASE_URL}Success`);
+               if(val){
+                   localStorage.removeItem('Data');
+               }
+
+           }).catch((err)=>{
+               console.log(err)
+           });
+
+       })
+
    }
 
   return (
@@ -189,21 +237,22 @@ export default function CustomizedExpansionPanels(props) {
                         <RadioGroup aria-label="gender" name="gender1" value={value} onChange={handleRadio}>
                             <FormControlLabel value="PayPal" control={<Radio />} label="PayPal" />
                             <FormControlLabel value="Cash on Delivery" control={<Radio />} label="Cash on Delivery" />
-                            <FormControlLabel value="Phone Pe" control={<Radio />} label="Phone Pe" />
+                            {/*<FormControlLabel value="Phone Pe" control={<Radio />} label="Phone Pe" />*/}
                         </RadioGroup>
                             {
                                 value==="PayPal" &&
                                 <PayPalButton
                                     paypalOptions={paypalOptions}
                                     buttonStyles={buttonStyles}
-                                    amount={total}
+                                    amount={Ctot}
                                     onPaymentCancel={()=>{console.log('Payment Cancel')}}
                                     onPaymentSuccess={(details, data)=>{
-                                        alert("Transaction completed by " + details.payer.name.given_name);
-
+                                        handleCheckout('PayPal');
+                                        // alert("Transaction completed by " + details.payer.name.given_name);
                                         console.log('Success Fully Payment Done')
                                     }}
                                 />
+
                             }
 
                         </div>
@@ -213,7 +262,7 @@ export default function CustomizedExpansionPanels(props) {
                                  variant="contained"
                                  color="primary"
                                  fullWidth={true}
-                                 // onClick={handlePayment}
+                                 onClick={()=>handleCheckout('COD')}
                              >
                                  Place Order
                              </Button>

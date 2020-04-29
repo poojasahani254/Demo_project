@@ -52,7 +52,8 @@ import { ADDTOCART } from '../../Action/index';
 
         const data = {
             data: value,
-            qty : 1
+            qty : 1,
+            status:true
         }
         arr.push(data);
         if(localStorage.getItem('user')!=null){

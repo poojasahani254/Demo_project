@@ -8,6 +8,7 @@ import OrderSummary from '../Components/OrderSummary/index'
 import ProductDisplay from '../Container/Product/index';
 import Cart from '../Components/Cart/index';
 import AddToCart from  '../Components/AddToCart/index';
+import Success from '../Components/CommonComponent/SuccessPayment';
 import {BASE_URL} from '../Constant';
 
 class Router extends Component {
@@ -41,6 +42,8 @@ class Router extends Component {
                          component={() => <OrderSummary value={this.props.value}/>}/>
                 <Public exact path={`${BASE_URL}Cart`}
                          component={() => <Cart value={this.props.value}/>}/>
+                <Public exact path={`${BASE_URL}Success`}
+                        component={() => <Success value={this.props.value}/>}/>
                 <Public exact path={`${BASE_URL}maps`}
                          component={() => <Maps value={this.props.value}/>}/>
                 <Public exact path={`${BASE_URL}Product`} component={() => <ProductDisplay {...this.props}/>}/>

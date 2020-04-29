@@ -33,7 +33,7 @@ export default function MediaControlCard(props) {
                                     className={clsx(classes.margin, classes.textField)}
                                     variant="outlined"
                                     size="small"
-                                    value={value}
+                                    value={item.qty}
                                 />
                                 <div className={classes.button} onClick={()=>{alert('hello')}}>
                                     <center><span className={classes.span} >+</span></center>
@@ -61,15 +61,13 @@ export default function MediaControlCard(props) {
                 )
             })
         }
-
         <Button
             variant="contained"
             color="primary"
-            className={classes.button}
             fullWidth={true}
             onClick={props.handleChange}
         >
-           Continue
+            Continue
         </Button>
     </div>
   );

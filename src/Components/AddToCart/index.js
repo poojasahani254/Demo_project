@@ -36,7 +36,6 @@ export default function CustomizedExpansionPanels(props) {
     });
 
     const handleClick = () =>{
-        console.log(arrayproduct)
         if(localStorage.getItem('user')!=null){
             history.push({
                 pathname: `${BASE_URL}OrderSummary`,

@@ -11,9 +11,9 @@ export default function ScrollableTabsButtonAuto() {
         setValue(newValue);
         localStorage.setItem('index', newValue);
 
-        
+
     };
-    
+
     useEffect(()=>{
         let arr=[]
         Api("Category","","get").then((res)=>{
@@ -27,7 +27,7 @@ export default function ScrollableTabsButtonAuto() {
             return true
 
         }).catch((error)=>{
-            console.log('Error',error)
+            // console.log('Error',error)
         })
     },[])
     if(data.length>0){
@@ -41,11 +41,11 @@ export default function ScrollableTabsButtonAuto() {
 
         )
     }else{
-        return (   
+        return (
             <Tabs
                 Isdata ={false}
                 data ={data}
-                /> 
+                />
             )
     }
 }

@@ -5,9 +5,13 @@ import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Paper from '@material-ui/core/Paper';
+import {BASE_URL} from "../../Constant";
+import { useHistory } from 'react-router-dom';
 
 const SignUp = (props) => {
     const classes = useStyles();
+    const history = useHistory();
+
     const [value,setvalue]=useState({
         Zipcode:'',
         State:'',
@@ -41,7 +45,22 @@ const SignUp = (props) => {
     },[props.address]);
 
     const handleSubmit =  () =>{
-       alert(JSON.stringify(value))
+        localStorage.setItem('location',JSON.stringify(value))
+        if(props.IsProps){
+            const oldproduct = localStorage.getItem('Data') ? localStorage.getItem('Data') : "[]";
+            const arrayproduct =  JSON.parse(oldproduct);
+            history.push({
+                pathname: `${BASE_URL}OrderSummary`,
+                state: arrayproduct
+            })
+        }else{
+
+            history.push({
+                pathname: `${BASE_URL}`,
+
+            })
+        }
+
     };
 
     const SetValues = (key ,value) =>{

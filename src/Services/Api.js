@@ -11,7 +11,7 @@ const Api = (url, data, method) => {
                     return Promise.resolve(response);
                 })
                 .catch(error => {
-                    console.log('Error Occured While Login', error);
+                    // console.log('Error Occured While Login', error);
                 });
 
         case 'get':
@@ -21,7 +21,7 @@ const Api = (url, data, method) => {
                     return Promise.resolve(response);
                 })
                 .catch(err => {
-                    console.log(('Error Occured while getting data', err));
+                    // console.log(('Error Occured while getting data', err));
                     return Promise.reject(err);
                 });
 

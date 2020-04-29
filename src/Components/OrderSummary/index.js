@@ -17,7 +17,8 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { useHistory} from 'react-router-dom';
-import { PayPalButton } from 'react-paypal-button'
+import { PayPalButton } from 'react-paypal-button';
+import  Modal from '../CommonComponent/Modal';
 
 const ExpansionPanelDetails = withStyles((theme) => ({
   root: {
@@ -27,40 +28,54 @@ const ExpansionPanelDetails = withStyles((theme) => ({
 
 export default function CustomizedExpansionPanels(props) {
   const classes = useStyles();
-  const  history=useHistory();
-  const [expanded, setExpanded] = React.useState('panel1');
-  const [value, setValue] = React.useState('Phone Pe');
-  const [total,setTotal]=useState(0.00);
+  const  history = useHistory();
+  const [expanded, setExpanded] = useState('panel1');
+  const [open,Setopen] = useState(false);
+  const [value, setValue] = React.useState('PayPal');
+  const [total,setTotal] = useState(0.00);
+  const user = localStorage.getItem('user');
+  const location = localStorage.getItem('location');
 
   const buttonStyles = {
         layout: 'vertical',
-        shape: 'rect',
-    }
-  const paypalOptions = {
-        clientId: 'AZk7GYWuBuLoD5cNJjuaYu5wsE9Zjwaaz_DNBMnGg1_lVKG9lELVMfZDDfpmFnLchYuLK9JHeuW2RBv0',
+        shape: 'pill',
+        color: 'silver'
+  }
+
+   const paypalOptions = {
+        clientId: 'AX3k5zojseFV94L0DeFEUiDhcgGtcLauaVa2DXB3w4DjRdQvh3FSK4nHROjRKZYGbcEIyi1cfppv9xN2',
         intent: 'capture'
-    }
+   }
 
     useEffect(()=>{
         let tot=0
         history.location.state.map(item=>{
-             console.log(item.Product_price)
-
             tot += item.data.Product_price * item.qty
         })
         setTotal(tot)
+
+        if(user!=null){
+            // if(user.firstName!=undefined){
+            //     setExpanded('panel2')
+            // }
+            setExpanded('panel2')
+            if(location!==null){
+                setExpanded('panel3')
+            }
+        }
     },[history.location.state]);
 
    const handleRadio = (event) => {
         setValue(event.target.value);
     };
    const handleChange = (panel) => (event, newExpanded) => {
-
         setExpanded(newExpanded || newExpanded==undefined ? panel : false);
 
     };
 
-
+   const handleLocation = () =>{
+       Setopen(!open)
+   }
 
   return (
     <>
@@ -83,7 +98,6 @@ export default function CustomizedExpansionPanels(props) {
                             Pooja Sahani +919662107895
                         </Typography>
                        </div>
-
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails>
                         <div className={classes.container}>
@@ -115,26 +129,25 @@ export default function CustomizedExpansionPanels(props) {
                         <Check style={{ color: 'green'}}/>
                         </div>
                         <Typography variant="subtitle2" className={classes.Typography}>
-                            Delivery adddress here
+                            {location!=null && JSON.parse(location).address}
                         </Typography>
-
                        </div>
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails>
-                      <Typography>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-                        sit amet blandit leo lobortis eget. Lorem ipsum dolor sit amet, consectetur adipiscing
-                        elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.
-                      </Typography>
-                        <Button
-                            variant="contained"
-                            color="primary"
-                            className={classes.button}
-                            fullWidth={true}
-                            onClick={handleChange('panel3')}
-                        >
-                            Continue
-                        </Button>
+                        <div className={classes.container}>
+                          <Typography>
+                            Please Fill Location Details
+                          </Typography>
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                className={classes.button}
+                                onClick={handleLocation}
+                            >
+                                Get Location
+                            </Button>
+                            <Modal open={open} handleClickOpen={handleLocation}/>
+                        </div>
                     </ExpansionPanelDetails>
                   </ExpansionPanel>
                   <ExpansionPanel square expanded={expanded === 'panel3'}>
@@ -152,56 +165,62 @@ export default function CustomizedExpansionPanels(props) {
                        </div>
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails>
-
-                      <Cart handleChange={handleChange('panel4')} {...history}/>
-
+                            <Cart handleChange={handleChange('panel4')} {...history}/>
                     </ExpansionPanelDetails>
                   </ExpansionPanel>
                   <ExpansionPanel square expanded={expanded === 'panel4'}>
-            <ExpansionPanelSummary aria-controls="panel1d-content" id="panel1d-header">
-             <div className={classes.root}>
-                <div className={classes.childRoot}>
-                <div className={classes.button}>
-                    <center><span className={classes.span}>4</span></center>
-                </div>
-                <Typography variant="subtitle1" >
-                    PAYMENT INFORMATION
-                </Typography>
-                {/* <Check style={{ color: 'green'}}/> */}
-                </div>
-               </div>
+                    <ExpansionPanelSummary aria-controls="panel1d-content" id="panel1d-header">
+                     <div className={classes.root}>
+                        <div className={classes.childRoot}>
+                        <div className={classes.button}>
+                            <center><span className={classes.span}>4</span></center>
+                        </div>
+                        <Typography variant="subtitle1" >
+                            PAYMENT INFORMATION
+                        </Typography>
+                        {/* <Check style={{ color: 'green'}}/> */}
+                        </div>
+                       </div>
 
-            </ExpansionPanelSummary>
-            <ExpansionPanelDetails>
+                    </ExpansionPanelSummary>
+                    <ExpansionPanelDetails>
+                        <div>
+                        <div className={classes.smartTipContainer} >
+                        <RadioGroup aria-label="gender" name="gender1" value={value} onChange={handleRadio}>
+                            <FormControlLabel value="PayPal" control={<Radio />} label="PayPal" />
+                            <FormControlLabel value="Cash on Delivery" control={<Radio />} label="Cash on Delivery" />
+                            <FormControlLabel value="Phone Pe" control={<Radio />} label="Phone Pe" />
+                        </RadioGroup>
+                            {
+                                value==="PayPal" &&
+                                <PayPalButton
+                                    paypalOptions={paypalOptions}
+                                    buttonStyles={buttonStyles}
+                                    amount={total}
+                                    onPaymentCancel={()=>{console.log('Payment Cancel')}}
+                                    onPaymentSuccess={(details, data)=>{
+                                        alert("Transaction completed by " + details.payer.name.given_name);
 
-                {/*<RadioGroup aria-label="gender" name="gender1" value={value} onChange={handleRadio}>*/}
-                {/*    <FormControlLabel value="Phone Pe" control={<Radio />} label="Phone Pe" />*/}
-                {/*    <FormControlLabel value="Cash on Delivery" control={<Radio />} label="Cash on Delivery" />*/}
-                {/*    <FormControlLabel value="Credit/Debit/ATM" control={<Radio />} label="Credit/Debit/ATM" />*/}
-                {/*</RadioGroup>*/}
-                {/*<Button*/}
-                {/*    variant="contained"*/}
-                {/*    color="prima      ry"*/}
-                {/*    className={classes.button}*/}
-                {/*    size="medium"*/}
-                {/*    onClick={handlePayment}*/}
-                {/*>*/}
-                {/*    CheckOut*/}
-                {/*</Button>*/}
-                <PayPalButton
-                    paypalOptions={paypalOptions}
-                    buttonStyles={buttonStyles}
-                    amount={total}
+                                        console.log('Success Fully Payment Done')
+                                    }}
+                                />
+                            }
 
-                    onPaymentCancel={()=>{console.log('Payment Cancel')}}
-                    onPaymentSuccess={(details, data)=>{
-                        alert("Transaction completed by " + details.payer.name.given_name);
-
-                        console.log('Success Fully Payment Done')
-                    }}
-                />
-            </ExpansionPanelDetails>
-          </ExpansionPanel>
+                        </div>
+                            {
+                             value==="Cash on Delivery" &&
+                             <Button
+                                 variant="contained"
+                                 color="primary"
+                                 fullWidth={true}
+                                 // onClick={handlePayment}
+                             >
+                                 Place Order
+                             </Button>
+                            }
+                        </div>
+                    </ExpansionPanelDetails>
+                  </ExpansionPanel>
             </div>
             <div className={classes.chartDetailContainer}>
                 <center><Typography variant="h5" color="textSecondary">PRICE DETAILS</Typography></center>

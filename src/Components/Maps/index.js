@@ -60,7 +60,7 @@ Geocode.setRegion("es");
                  const address = response.results[0].formatted_address;
                  setAddress(address)
                  setAddressob(response.results[0].address_components)
-                 console.log(response)
+                 // console.log(response)
              },
              error => {
                  console.error(error);
@@ -88,6 +88,7 @@ Geocode.setRegion("es");
                      <InputMap
                         address={addressobj}
                         CombineAdd={address}
+                        {...props}
                      />
                  </div>
                  <div className={classes.container}>

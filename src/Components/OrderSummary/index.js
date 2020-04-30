@@ -21,7 +21,6 @@ import  Modal from '../CommonComponent/Modal';
 import Header from '../CommonComponent/Header';
 import Cart from '../Cart/index';
 import {BASE_URL} from "../../Constant";
-import { notify} from "../CommonComponent/Alert";
 import Api from "../../config/config";
 
 const ExpansionPanelDetails = withStyles((theme) => ({

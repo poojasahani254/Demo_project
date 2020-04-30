@@ -10,8 +10,6 @@ export default function ScrollableTabsButtonAuto() {
     const handleChange = (event,newValue) => {
         setValue(newValue);
         localStorage.setItem('index', newValue);
-
-
     };
 
     useEffect(()=>{

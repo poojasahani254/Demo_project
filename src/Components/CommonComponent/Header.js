@@ -1,4 +1,4 @@
-import React  from 'react';
+import React, {useState} from 'react';
 import { useHistory } from "react-router-dom";
 import { makeStyles,useTheme,fade } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
@@ -19,6 +19,7 @@ import Menu from '@material-ui/core/Menu';
 import { useTranslation } from 'react-i18next';
 import {BASE_URL} from '../../Constant';
 import { useSelector } from 'react-redux';
+import Api from "../../config/config";
 
 const names = [{
    name: 'हिन्दी',
@@ -32,6 +33,7 @@ const names = [{
     key:'gu',
 }];
 function App(props) {
+    let text='';
     const classes = useStyles();
     const theme = useTheme();
     const history=useHistory();
@@ -40,9 +42,10 @@ function App(props) {
     const oldproduct = localStorage.getItem('Data') ? localStorage.getItem('Data') : "[]";
     const user =  JSON.parse(oldproduct);
 
-    const [Lang, setLang] = React.useState([defaultLang]);
-    const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [Lang, setLang] = useState([defaultLang]);
+    const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
+    const [anchorEl, setAnchorEl] = useState(null);
+    const [searchText,SetSearchText] = useState('');
     // const user = useSelector(state => state.ProductReducers.AddtoCartData);
 
     const mobileMenuId = 'primary-search-account-menu-mobile';
@@ -66,9 +69,11 @@ function App(props) {
                     : theme.typography.fontWeightMedium,
         };
     }
+
     const handleProfileMenuOpen = (event) => {
         setAnchorEl(event.currentTarget);
     };
+
     const handleMobileMenuClose = () => {
         setMobileMoreAnchorEl(null);
     };
@@ -76,6 +81,7 @@ function App(props) {
     const handleSignin = () =>{
         history.push(`${BASE_URL}SignIn`)
     }
+
     const handleMenuClose = () => {
         setAnchorEl(null);
         handleMobileMenuClose();
@@ -114,6 +120,42 @@ function App(props) {
         }
     ]
 
+    const handleSearch = (event) =>{
+        SetSearchText(event.target.value);
+        text += event.target.value;
+
+        console.log(text)
+        Api("Product","","get").then((res)=>{
+            let arr=[]
+            res.docs.map(item=>{
+
+                if(item.data().Product_name.includes(searchText)){
+                    arr.push({
+                        "id" : item.id,
+                        "Product_description":item.data().Product_description,
+                        "Product_name":item.data().Product_name,
+                        "Product_price":item.data().Product_price,
+                        "Category_id":item.data().category_id,
+                        "Product_image":item.data().Product_image
+                    })
+                }
+
+                return true
+            })
+            localStorage.setItem('search',text)
+            if(arr.length>0){
+                history.push({
+                    pathname:`${BASE_URL}Product`,
+                    state: { data: arr, Search:true }
+                })
+            }
+
+            text = ''
+        }).catch((error)=>{
+            console.log('Error',error)
+        })
+    }
+
     const renderMenu = (
         <Menu
             anchorEl={anchorEl}
@@ -132,9 +174,8 @@ function App(props) {
         </Menu>
     );
 
-
     const handleLocation = ()=>{
-        history.push('/maps')
+        history.push(`${BASE_URL}maps`)
     }
 
     const handleCartItem  = () =>{
@@ -181,6 +222,7 @@ function App(props) {
         </Menu>
     );
 
+
     return (
         <div className={classes.root}>
                 <Toolbar>
@@ -197,7 +239,10 @@ function App(props) {
                                 root: classes.inputRoot,
                                 input: classes.inputInput,
                             }}
+                            defaultValue={localStorage.getItem('search')}
                             inputProps={{ 'aria-label': 'search' }}
+                            onChange={handleSearch}
+
                         />
                     </div>
                     <Divider orientation="vertical" flexItem={true} variant="middle"/>

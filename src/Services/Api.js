@@ -1,9 +1,6 @@
 import axios from 'axios';
-const Api = (url, data, method) => {
-    const url1 =  url;
-    // const url1 = 'http://192.168.42.141:3000' + url;
+const Api = (url1, data, method) => {
     switch (method) {
-
         case 'post':
             return axios
                 .post(url1, data)

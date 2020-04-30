@@ -46,7 +46,7 @@ import { ADDTOCART } from '../../Action/index';
         localStorage.setItem('Data',JSON.stringify(arrayproduct))
         setOpen(!open)
 
-}
+    }
     const handleBuyNowClick =(value)=>{
         let arr=[];
 
@@ -69,7 +69,13 @@ import { ADDTOCART } from '../../Action/index';
 
    }
     return (
-       <ProductDisplay handleClick={handleCartClick} handleBuyNow={handleBuyNowClick} {...props} open={open} HandleModal={HandleModal}/>
+       <ProductDisplay
+           handleClick={handleCartClick}
+           handleBuyNow={handleBuyNowClick}
+           {...props}
+           open={open}
+           HandleModal={HandleModal}
+       />
     )
 }
-export  default  (Product)
+export default Product;

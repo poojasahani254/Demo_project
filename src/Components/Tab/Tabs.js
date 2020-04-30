@@ -17,8 +17,8 @@ const a11yProps=(index) =>{
     const classes = useStyles()
     const { t } = useTranslation()
     const history=useHistory()
-    
-    const handleClick =(value)=>{ 
+
+    const handleClick =(value)=>{
         // console.log(props.data[props.value].id)
         history.push({
              pathname:`${BASE_URL}Product`,
@@ -43,11 +43,12 @@ const a11yProps=(index) =>{
                 </Tabs>
                 :
                 <Skeleton animation="wave" variant="rect" style={{height:"7vh"}}/>
-            }     
+            }
         </div>
     );
 }
-export  default  (ScrollableTabsButtonAuto)
+export  default  ScrollableTabsButtonAuto
+
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,

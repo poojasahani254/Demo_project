@@ -80,10 +80,18 @@ export default function RecipeReviewCard(props) {
         )
       })
       :
-      <DataNotFound data={props.data} />
+      <DataNotFound
+          data={props.data}
+      />
     }
     </div>
-     <div> <Pagination count={totalPage} color="primary" onChange={handleChange}  /></div>
+     <div>
+         <Pagination
+             count={totalPage}
+             color="primary"
+             onChange={handleChange}
+         />
+     </div>
     </>
   )
 }

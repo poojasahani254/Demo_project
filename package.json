@@ -137,6 +137,6 @@
     "@storybook/addons": "^5.3.17",
     "@storybook/preset-create-react-app": "^2.1.0",
     "@storybook/react": "^5.3.17",
-    "jsdom": "^13.1.0"
+    "jsdom": "^16.5.0"
   }
 }
